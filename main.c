@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "color.h"
 
 //Fonction init du shell
 //Parametres :
@@ -23,8 +24,8 @@ int main(int argc, char *argv[]){
       //return initNaturalMode(); TODO Non implémenté
     break;
     default:
-      printf("Erreur! le mode %d n'est pas un mode connu",config-Wmode);
-      printf("Les modes disponibles sont :\n0 : Mode expert\n1 : Mode assistant\n2 : Mode naturel");
+      printf(COLOR_RED "Erreur!" COLOR_RESET " le mode %d n'est pas un mode connu\n",config->mode); TODO Gestion du multilangue
+      printf("Les modes disponibles sont :\n0 : Mode expert\n1 : Mode assistant\n2 : Mode naturel\n");
       return EXIT_FAILURE;
     break;
   }*/
