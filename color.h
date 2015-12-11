@@ -1,4 +1,3 @@
-
 #ifndef _COLORHEADER_
 #define _COLORHEADER_
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "color.h"
+#include "load.h"
 
 //Fonction init du shell
 //Parametres :
@@ -9,7 +10,7 @@
 //Renvoie : Code de sortie du programme
 int main(int argc, char *argv[]){
   //Chargement de la configuration
-  //config *configuration = loadConfig(); TODO Non implémenté
+  Config *configuration = loadConfig(); //TODO Non implémenté
   /*switch(config->mode){
     case 0:
       //Mode expert

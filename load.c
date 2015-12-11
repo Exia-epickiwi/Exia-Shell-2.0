@@ -4,25 +4,35 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "load.h"
+//Nombre de caractère maximale
+#define LINE_CHARACTER_MAX 150;
 
-int loadConfig(){ //Fonction permettant de charger des variables à partir d'un dossier
-  int mode;
-  char language[3];
-  char prompt[256];
+//Fonction permettant de charger des variables à partir d'un dossier
+Config *loadConfig(){
+  //initialie et ouvre le fichier en lecture seul
+  FILE *fichierConfig;
+  fichierConfig = fopen("config.txt", "r");
+  //Initiale la structure
+  Config *config = malloc(sizeof(Config));
+  //Si le fichierConfig n'existe pas alors il l'écrit
+  if(fichierConfig == NULL){
+    fichierConfig = fopen("config.txt", "w");
+    //Ecrit dans le fichier le mode, langue et le prompt par défaut
+    fputs("mode : 0\nlanguage : fr\nprompt : exsh\n", fichierConfig);
+    //Puis l'insère dans le la config.
+    config->mode = 0;
+    strcpy(config->locale, "fr");
+    strcpy(config->prompt, "exsh");
+    config->lang = NULL;
 
-  int idFichierConfig = -1;
-  idFichierConfig = open("config.txt", O_RDONLY); //ouvre le fichier en lecture seul
-
-  if(idFichierConfig == -1){
-    idFichierConfig = open("config.txt", O_CREAT | O_WRONLY, 0777);
-    write(idFichierConfig, "mode : 0\nlanguage : fr\nname : exsh\n", 35);
-    mode = 0;
-    language = "Fr";
-    prompt = "exsh";
   } else {
-    
+    //Initiale un tableau char comportant la ligne en cours de lecture.
+    char lineConfig[LINE_CHARACTER_MAX];
+    while(fgets(ligneConfig, LINE_CHARACTER_MAX, fichierConfig)){
+    }
   }
-
-  close(idFichierConfig);
-  return 1; //retourne 1 si tout est chargé correctement
+  //Ferme le fichier correctement
+  fclose(fichierConfig);
+  //retourne la structure config initialisé
+  return config;
 }
