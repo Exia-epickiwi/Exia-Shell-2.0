@@ -10,8 +10,6 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
-#include "log.h"
-#include "log.c"
 #include "motd.h"
 //Fonction init du shell
 //Parametres :
@@ -21,7 +19,7 @@
 int main(int argc, char *argv[]){
   //Chargement de la configuration
   Config *configuration = loadConfig();
-  printStartsInfos(configuration->lang);
+  printStartsInfos(configuration->locale);
   switch(configuration->mode){
     case 0:
       //Mode expert
