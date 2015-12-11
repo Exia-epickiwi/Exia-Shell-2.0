@@ -67,6 +67,7 @@ void addLanguageString(Language *target,char *key, char *value){
   }else{
     target->last->next = newString;
   }
+  target->length++;
   target->last = newString;
 }
 
