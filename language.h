@@ -13,9 +13,12 @@ struct LangString{
 
 typedef struct Language{
   LangString *first;
+  LangString *last;
   int length;
 } Language;
 
 Language* loadLanguage(char *file);
+Language* parseLanguageFile(FILE *langFile);
+void addLanguageString(Language *target,char *key, char *value);
 
 #endif
