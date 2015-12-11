@@ -10,7 +10,12 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
+<<<<<<< HEAD
 #include "motd.h"
+=======
+#include "display.c"
+
+>>>>>>> 9e0e19b2d65cdb50f04175449af95fecba3f2c40
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés
