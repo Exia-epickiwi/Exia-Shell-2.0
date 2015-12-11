@@ -1,34 +1,22 @@
 #include <string.h>
+#include <unistd.h>
 #include "exec.h"
 
-int execCommand(char *command){
-  char *args[50];
-  char path[COMMAND_LENGTH];
-  int length = splitCommand(command,args,path);
-  int i;
-  printf("->%s\n",path);
-  for(i = 0; i<length; i++){
-    printf("%s\n",args[i]);
+int execCommand(char *str){
+  char **args = NULL;
+  char *p    = strtok (str, " ");
+  int length = 0, i;
+  while (p) {
+    args = realloc (args, sizeof (char*) * ++length);
+    args[length-1] = p;
+    p = strtok (NULL," ");
   }
-}
 
-int splitCommand(char *str, char **splitstr,char *program)
-{
-  char *p;
-  int i=0;
-
-  p = strtok(str," ");
-  while(p!= NULL)
-  {
-    if(i > 0){
-      splitstr[i] = malloc(strlen(p) + 1);
-      if (splitstr[i-1])
-        strcpy(splitstr[i-1], p);
-    }else{
-      strcpy(program,p);
-    }
-    i++;
-    p = strtok(NULL, " ");
+  int pid = fork();
+  if(pid == 0){
+    execv(args[0],args);
+    return -1;
+  }else{
+    return pid;
   }
-  return i;
 }
