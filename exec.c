@@ -3,14 +3,16 @@
 
 int execCommand(char *command){
   char *args[50];
-  int length = splitCommand(command,args);
+  char path[COMMAND_LENGTH];
+  int length = splitCommand(command,args,path);
   int i;
+  printf("->%s\n",path);
   for(i = 0; i<length; i++){
     printf("%s\n",args[i]);
   }
 }
 
-int splitCommand(char *str, char **splitstr)
+int splitCommand(char *str, char **splitstr,char *program)
 {
   char *p;
   int i=0;
@@ -18,11 +20,15 @@ int splitCommand(char *str, char **splitstr)
   p = strtok(str," ");
   while(p!= NULL)
   {
-    splitstr[i] = malloc(strlen(p) + 1);
-    if (splitstr[i])
-      strcpy(splitstr[i], p);
+    if(i > 0){
+      splitstr[i] = malloc(strlen(p) + 1);
+      if (splitstr[i-1])
+        strcpy(splitstr[i-1], p);
+    }else{
+      strcpy(program,p);
+    }
     i++;
-    p = strtok (NULL, " ");
+    p = strtok(NULL, " ");
   }
   return i;
 }
