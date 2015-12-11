@@ -10,6 +10,8 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
+#include "log.h"
+#include "log.c"
 
 //Fonction init du shell
 //Parametres :

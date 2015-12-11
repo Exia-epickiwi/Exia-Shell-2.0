@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include "config.h"
 #include "language.h"
 //Nombre de caractère maximale
@@ -35,7 +33,6 @@ Config *loadConfig(){
       char *keyword = separationChain(lineConfig, '=');
       //Si c'est égale à mode
       if(strcmp(keyword, "mode") == 0){
-        //si c'est entre 0 et 2 alors il l'enregistre sinon c'est 0
         config->mode = atoi(lineConfig);
       }
       //si c'est égale à language

@@ -1,3 +1,0 @@
-mode=0
-language=fr
-prompt=exsh
