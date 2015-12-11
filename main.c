@@ -10,6 +10,7 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
+#include "display.c"
 
 //Fonction init du shell
 //Parametres :
@@ -17,6 +18,10 @@
 //  argv : Tableau d'arguments passés
 //Renvoie : Code de sortie du programme
 int main(int argc, char *argv[]){
+  printPrompt("8==");
+  char com[50];
+  getKeyboard(com,50);
+  printf("%s\n",com);
   //Chargement de la configuration
   Config *configuration = loadConfig();
   switch(configuration->mode){
