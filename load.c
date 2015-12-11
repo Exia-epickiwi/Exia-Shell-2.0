@@ -7,35 +7,36 @@
 //Nombre de caractère maximale
 #define LINE_CHARACTER_MAX 150
 //Prototype type de c'est fonction
-char *separationChaine(char config[], char separation);
+char *separationChain(char config[], char separation);
 void moveIndex(char config[], int start, int end);
 
 //Fonction permettant de charger des variables à partir d'un dossier
 Config *loadConfig(){
   //initialie et ouvre le fichier en lecture seul
-  FILE *fichierConfig;
-  fichierConfig = fopen("config.txt", "r");
+  FILE *fileConfig;
+  fileConfig = fopen("config.txt", "r");
   //Initiale la structure
   Config *config = malloc(sizeof(Config));
-  //Si le fichierConfig n'existe pas alors il l'écrit
-  if(fichierConfig == NULL){
-    fichierConfig = fopen("config.txt", "w");
+
+  //Si le fileConfig n'existe pas alors il l'écrit
+  if(fileConfig == NULL){
+    fileConfig = fopen("config.txt", "w");
     //Ecrit dans le fichier le mode, langue et le prompt par défaut
-    fputs("mode=0\nlanguage=fr\nprompt=exsh\n", fichierConfig);
+    fputs("mode=0\nlanguage=fr\nprompt=exsh\n", fileConfig);
     //Puis l'insère dans le la config.
     config->mode = 0;
+    config->lang = NULL;
     strcpy(config->locale, "fr");
     strcpy(config->prompt, "exsh");
-    config->lang = NULL;
   } else {
     //Initiale un tableau char comportant la ligne en cours de lecture.
     char lineConfig[LINE_CHARACTER_MAX];
-    //Récupére chaque ligne du fichierConfig
-    while(fgets(lineConfig, LINE_CHARACTER_MAX, fichierConfig)){
+    //Récupére chaque ligne du fileConfig
+    while(fgets(lineConfig, LINE_CHARACTER_MAX, fileConfig)){
       //Permet de garder en mémoire le mot clef de la config
-      char *motClef = separationChaine(lineConfig, '=');
+      char *keyword = separationChain(lineConfig, '=');
       //Si c'est égale à mode
-      if(strcmp(motClef, "mode") == 0){
+      if(strcmp(keyword, "mode") == 0){
         //si c'est entre 0 et 2 alors il l'enregistre sinon c'est 0
         if(lineConfig[0] <= '2' && lineConfig[0] >= '0'){
           config->mode = atoi(lineConfig);
@@ -44,26 +45,26 @@ Config *loadConfig(){
         }
       }
       //si c'est égale à language
-      else if(strcmp(motClef, "language") == 0){
+      else if(strcmp(keyword, "language") == 0){
         //Copie le reste de la lineConfig dans la config de locale
         strcpy(config->locale, lineConfig);
       }
       //si c'est égale à prompt
-      else if(strcmp(motClef, "prompt") == 0){
+      else if(strcmp(keyword, "prompt") == 0){
         //Cope le reste de la lineConfig dans la config de prompt
         strcpy(config->prompt, lineConfig);
       }
     }
-    printf("Initialisation finish\n");
-    printf("%s> \n",config->prompt);
+
+    //Initialisation de la langue
   }
   //Ferme le fichier correctement
-  fclose(fichierConfig);
+  fclose(fileConfig);
   //retourne la structure config initialisé
   return config;
 }
 //fonction pour séparer une chaine de caractère à partir d'un char de séparation
-char *separationChaine(char config[], char separation){
+char *separationChain(char config[], char separation){
   //initiale les variables des boucles for => Pour certain c cela ne marche pas les déclarations dans les boucles for
   int a, b;
   //boucle for qui parcour le tableau config[]

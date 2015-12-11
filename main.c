@@ -10,7 +10,7 @@
 //Renvoie : Code de sortie du programme
 int main(int argc, char *argv[]){
   //Chargement de la configuration
-  Config *configuration = loadConfig(); //TODO Non implémenté
+  Config *configuration = loadConfig();
   /*switch(Config->mode){
     case 0:
       //Mode expert
