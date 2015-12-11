@@ -2,6 +2,10 @@
 #include <string.h>
 #include "language.h"
 
+//Charge le fichier de langue donné
+//paramètres :
+//  file : Chemin vers le fichier de langue
+//Renvoie : Structure de controle de la liste chainée des clefs
 Language* loadLanguage(char *file){
   //On charge le fichier donné en paramètres
   FILE *langFile = fopen(file,"r");
@@ -16,6 +20,10 @@ Language* loadLanguage(char *file){
   return lang;
 }
 
+//Parse le contenu du fichier donné
+//paramètres :
+//  langFile : Structure FILE du fichier
+//Renvoie : Structure de controle de la liste chainée des clefs
 Language* parseLanguageFile(FILE *langFile){
   //Initialisation de la liste chainée
   Language *lang = malloc(sizeof(Language));
@@ -43,6 +51,11 @@ Language* parseLanguageFile(FILE *langFile){
   return lang;
 }
 
+//Ajoute une clef a la liste chainée
+//paramètres :
+//  target : Structure de controle
+//  key : Chaine de clé
+//  value : Valeur associée a la clé
 void addLanguageString(Language *target,char *key, char *value){
   //Allocation dynamique du nouvel element
   LangString *newString = malloc(sizeof(LangString));
@@ -57,6 +70,11 @@ void addLanguageString(Language *target,char *key, char *value){
   target->last = newString;
 }
 
+//Convertie une clé en valeur
+//paramètres :
+//  lang : Structure de controle de la langue
+//  key : Clé d'identification de la langue
+//Renvoie : Une chaine de caractères correspondante
 char* toLocaleString(Language *lang,char *key){
   LangString *next = lang->first;
   int i;
