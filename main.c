@@ -18,8 +18,6 @@
 //  argv : Tableau d'arguments passés
 //Renvoie : Code de sortie du programme
 int main(int argc, char *argv[]){
-  char command[] = "/bin/ls /bin";
-  execCommand(command);
   //Chargement de la configuration
   Config *configuration = loadConfig();
   switch(configuration->mode){

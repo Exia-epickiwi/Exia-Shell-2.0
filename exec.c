@@ -15,8 +15,19 @@ int execCommand(char *str){
   int pid = fork();
   if(pid == 0){
     execv(args[0],args);
+  }else if(pid < 0){
     return -1;
   }else{
     return pid;
+  }
+}
+
+int execCommandSync(char *command){
+  int pid = execCommand(command);
+  if(pid > 0){
+    wait(pid);
+    return 1;
+  } else {
+    return 0;
   }
 }
