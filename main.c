@@ -10,7 +10,6 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
-#include "exec.c"
 
 //Fonction init du shell
 //Parametres :
