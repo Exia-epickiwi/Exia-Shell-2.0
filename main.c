@@ -6,7 +6,10 @@
 #define COMMAND_LENGTH 256
 //Fichier relatif aux couleurs
 #include "color.h"
-#include "load.h"
+#include "config.h"
+#include "config.c"
+#include "language.h"
+#include "language.c"
 
 //Fonction init du shell
 //Parametres :
@@ -16,7 +19,7 @@
 int main(int argc, char *argv[]){
   //Chargement de la configuration
   Config *configuration = loadConfig();
-  /*switch(Config->mode){
+  switch(configuration->mode){
     case 0:
       //Mode expert
       //return initExpertMode();  TODO Non implémenté
@@ -30,9 +33,8 @@ int main(int argc, char *argv[]){
       //return initNaturalMode(); TODO Non implémenté
     break;
     default:
-      printf(COLOR_RED "Erreur!" COLOR_RESET " le mode %d n'est pas un mode connu\n",config->mode); TODO Gestion du multilangue
-      printf("Les modes disponibles sont :\n0 : Mode expert\n1 : Mode assistant\n2 : Mode naturel\n");
+      printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(configuration->lang,"error.error"),toLocaleString(configuration->lang,"error.unknownMode"));
       return EXIT_FAILURE;
     break;
-  }*/
+  }
 }

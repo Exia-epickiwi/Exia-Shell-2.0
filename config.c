@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "load.h"
+#include "config.h"
 #include "language.h"
 //Nombre de caractère maximale
 #define LINE_CHARACTER_MAX 150
@@ -15,16 +15,13 @@ void moveIndex(char config[], int start, int end);
 Config *loadConfig(){
   //initialie et ouvre le fichier en lecture seul
   FILE *fileConfig;
-  fileConfig = fopen("config.txt", "r");
+  fileConfig = fopen(PATH_PROFILE, "r");
   //Initiale la structure
   Config *config = malloc(sizeof(Config));
 
   //Si le fileConfig n'existe pas alors il l'écrit
   if(fileConfig == NULL){
-    fileConfig = fopen("config.txt", "w");
-    //Ecrit dans le fichier le mode, langue et le prompt par défaut
-    fputs("mode=0\nlanguage=fr\nprompt=exsh\n", fileConfig);
-    //Puis l'insère dans le la config.
+    //On insere desd valeurs par défaut
     config->mode = 0;
     config->lang = NULL;
     strcpy(config->locale, "fr");
@@ -39,11 +36,7 @@ Config *loadConfig(){
       //Si c'est égale à mode
       if(strcmp(keyword, "mode") == 0){
         //si c'est entre 0 et 2 alors il l'enregistre sinon c'est 0
-        if(lineConfig[0] <= '2' && lineConfig[0] >= '0'){
-          config->mode = atoi(lineConfig);
-        } else {
-          config->mode = 0;
-        }
+        config->mode = atoi(lineConfig);
       }
       //si c'est égale à language
       else if(strcmp(keyword, "language") == 0){
@@ -56,8 +49,9 @@ Config *loadConfig(){
         strcpy(config->prompt, lineConfig);
       }
     }
-
     //Initialisation de la langue
+    char path[] = PATH_LANGUAGE;
+    config->lang = loadLanguage(strcat(path,config->locale));
   }
   //Ferme le fichier correctement
   fclose(fileConfig);
