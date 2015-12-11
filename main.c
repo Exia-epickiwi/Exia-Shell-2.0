@@ -10,6 +10,7 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
+#include "exec.c"
 
 //Fonction init du shell
 //Parametres :
@@ -17,6 +18,8 @@
 //  argv : Tableau d'arguments passés
 //Renvoie : Code de sortie du programme
 int main(int argc, char *argv[]){
+  char command[] = "ls /bin -hl";
+  execCommand(command);
   //Chargement de la configuration
   Config *configuration = loadConfig();
   switch(configuration->mode){
