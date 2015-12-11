@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]){
   //Chargement de la configuration
   Config *configuration = loadConfig(); //TODO Non implémenté
-  /*switch(config->mode){
+  /*switch(Config->mode){
     case 0:
       //Mode expert
       //return initExpertMode();  TODO Non implémenté
