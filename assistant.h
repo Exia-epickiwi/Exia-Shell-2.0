@@ -36,9 +36,9 @@ void printCategoryTree(Category *index,int deep);
 char* getCategoryCommand(char* buffer);
 int printCategoryElements(Language *lang,Category *cat);
 Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxChoice);
-int execCategoryCommand(char *command);
+int execCategoryCommand(Language *lang,CategoryCommand *command);
 char getNextCategoryParam(char *command);
-void askForCategoryPram(char* command,char paramType);
+void askForCategoryPram(Language *lang,char* command,char paramType,char *pramsNames);
 char* getCategoryParams(char* buffer);
 
 #endif

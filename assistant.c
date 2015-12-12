@@ -60,7 +60,7 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
     if(i == choice){
       if(next->command){
         printf("\n");
-        execCategoryCommand(next->command->command);
+        execCategoryCommand(lang,next->command);
         printf("\n");
       }
       if(next->under){
@@ -74,36 +74,44 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
   return nowCategory->parent->above;
 }
 
-int execCategoryCommand(char *command){
+int execCategoryCommand(Language *lang,CategoryCommand *command){
   char cmd[COMMAND_LENGTH] = {'\0'};
-  strcpy(cmd,command);
+  strcpy(cmd,command->command);
+  char parameters[COMMAND_LENGTH] = {'\0'};
+  strcpy(parameters,command->parameters);
   char param = getNextCategoryParam(cmd);
   while(param != -1){
-    askForCategoryPram(cmd,param);
+    askForCategoryPram(lang,cmd,param,parameters);
     param = getNextCategoryParam(cmd);
   }
   printf("Execution de la commande : %s\n",cmd);
-  //execCommandSync(cmd);
+  execCommandSync(cmd);
 }
 
-void askForCategoryPram(char* command,char paramType){
-  switch(paramType){
-    case 'd':
-      printf("Number> ");
-    break;
-    case 's':
-      printf("String> ");
-    break;
-    default:
-      printf("Parameter> ");
-    break;
+void askForCategoryPram(Language *lang,char* command,char paramType,char *paramsNames){
+  char param[COMMAND_LENGTH] = {'\0'};
+  if(paramsNames != NULL){
+    int k;
+    for(k = 0;paramsNames[k] != '|' && k<strlen(paramsNames);k++){
+      param[k] = paramsNames[k];
+    }
+    param[k] = '\0';
+    int l;
+    for(l = 0,k++;k<strlen(paramsNames);k++){
+      paramsNames[l] = paramsNames[k];
+      l++;
+    }
+    paramsNames[l] = '\0';
+    printf("%s : ",toLocaleString(lang,param));
+  } else {
+    printf("> ");
   }
   //Séparation de la chaine
   char end[COMMAND_LENGTH];
   int capture = 0;
   int i,j;
   for(i = 0,j = 0; i<strlen(command); i++){
-    if(command[i] == '%' && (command[i+1]>=97 && command[i+1]<=122)){
+    if(capture == 0 && command[i] == '%' && (command[i+1]>=97 && command[i+1]<=122)){
       capture = i;
       i += 2;
     }
@@ -113,17 +121,11 @@ void askForCategoryPram(char* command,char paramType){
     }
   }
   command[capture] = '\0';
+  end[j] = '\0';
   //Recuperation du paramètre
   char buffer[COMMAND_LENGTH];
   getKeyboard(buffer,COMMAND_LENGTH);
-  switch(paramType){
-    case 'd':
-      strcat(command,buffer);
-    break;
-    case 's': default:
-      strcat(command,buffer);
-    break;
-  }
+  strcat(command,buffer);
   strcat(command,end);
 }
 
@@ -170,6 +172,9 @@ Category* parseCategory(FILE *file,long position,Category *parent){
   while(fgets(buffer,MAX_CATEGORY_LINE_LENGTH,file) != NULL){
     //Suppression du \n final
     strcpy(buffer,strtok(buffer,"\r"));
+    int k;
+    for(k = 0; buffer[k] != '\r' && buffer[k] != '\n' && k<strlen(buffer); k++){}
+    buffer[k] = '\0';
     //Verification que l'on est toujours soit au dessus soit au même niveau
     int deep = getDeep(buffer);
     if(deep < baseDeep){
@@ -232,6 +237,7 @@ char* getCategoryLineName(char* buffer){
       j++;
     }
   }
+  result[j] = '\0';
   return result;
 }
 
@@ -249,6 +255,7 @@ char* getCategoryCommand(char* buffer){
     }
   }
   if(finded == 1){
+    result[j] = '\0';
     return result;
   }else{
     return NULL;
@@ -269,6 +276,7 @@ char* getCategoryParams(char* buffer){
     }
   }
   if(finded == 1){
+    result[j] = '\0';
     return result;
   }else{
     return NULL;
