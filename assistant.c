@@ -21,6 +21,7 @@ int initAssistantMode(Config *config){
     printf("%s (1-%d) : ",toLocaleString(config->lang,"assistant.promptChoice"),maxChoice);
     char buffer[5] = {'\0'};
     getKeyboard(buffer,5);
+    displayed = performCategoryAction(config->lang,displayed,buffer,maxChoice);
     printf("\n");
   }
 }
@@ -40,6 +41,34 @@ int printCategoryElements(Language *lang,Category *cat){
   }
   printf("\n");
   return i;
+}
+
+Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxInput){
+  int choice = atoi(input);
+  if(choice == 0){
+    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.assistant.unknownChoice"));
+    return nowCategory;
+  } else if(choice > maxInput || choice < 1){
+    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.assistant.outChoice"));
+    return nowCategory;
+  }
+  int i = 1;
+  CategoryElement *next = nowCategory->first;
+  while(next != NULL){
+    if(i == choice){
+      if(next->command){
+        printf("\nExecution de la commande %s",next->command->command);
+      }
+      if(next->under){
+        nowCategory = next->under;
+      }
+      printf("\n");
+      return nowCategory;
+    }
+    i++;
+    next = next->next;
+  }
+  return nowCategory->parent->above;
 }
 
 Category* loadCategories(char *path){
@@ -113,6 +142,7 @@ void addCategoryElement(Category *parent,char *name,Category *under, CategoryCom
   element->under = under;
   element->command = command;
   element->next == NULL;
+  element->above = parent;
   strcpy(element->name,name);
   if(parent->first == NULL){
     parent->first = element;

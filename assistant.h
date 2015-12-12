@@ -14,6 +14,7 @@ struct Category{
 };
 
 struct CategoryElement{
+  Category *above;
   Category *under;
   CategoryCommand *command;
   CategoryElement *next;
@@ -33,5 +34,6 @@ char* getCategoryLineName(char* buffer);
 void printCategoryTree(Category *index,int deep);
 char* getCategoryCommand(char* buffer);
 int printCategoryElements(Language *lang,Category *cat);
+Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxChoice);
 
 #endif

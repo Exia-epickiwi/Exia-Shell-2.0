@@ -1,6 +1,8 @@
 error.error=Erreur
 error.unknownMode=Mode non reconnu
 error.loadCategories=Impossible de charger les categories
+error.assistant.unknownChoice=Impossible de determiner votre choix
+error.assistant.outChoice=Aucune action ne correcpond a votre choix
 assistant.indexPrompt=Que souhaitez vous faire ?
 assistant.back=Retour
 assistant.promptChoice=Votre choix
