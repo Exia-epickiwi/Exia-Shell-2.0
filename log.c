@@ -18,7 +18,7 @@ void toLog(char *string){
   char logString[80];
   char *date = ctime(&t);
   //Formate une chaine de caractère avec la date et la commande
-  sprintf(logString, "[%s] %s", removeN(date), string);
+  sprintf(logString, "[%s] %s\n", removeN(date), string);
 
   //si le fichier n'existe pas alors il créer un nouveau.
   if(fileLog == NULL){

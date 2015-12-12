@@ -53,11 +53,14 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
   }
   int i = 1;
   CategoryElement *next = nowCategory->first;
+  printf("\n");
   while(next != NULL){
     if(i == choice){
       if(next->command){
-        printf("\n");
-        execCategoryCommand(lang,next->command);
+        int success = execCategoryCommand(lang,next->command);
+        if(success == 0){
+          printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.programError"));
+        }
         printf("\n");
       }
       if(next->under){
@@ -81,8 +84,8 @@ int execCategoryCommand(Language *lang,CategoryCommand *command){
     askForCategoryPram(lang,cmd,param,parameters);
     param = getNextCategoryParam(cmd);
   }
-  execCommandSync(cmd);
   toLog(cmd);
+  return execCommandSync(cmd);
 }
 
 void askForCategoryPram(Language *lang,char* command,char paramType,char *paramsNames){
