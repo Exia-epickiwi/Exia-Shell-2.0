@@ -10,7 +10,6 @@ int initAssistantMode(Config *config){
     printf("%s %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.loadCategories"));
     exit(EXIT_FAILURE);
   }
-  printCategoryTree(index,0);
   Category *displayed = index;
   while(1){
     printPrompt(config->prompt);
@@ -24,7 +23,6 @@ int initAssistantMode(Config *config){
     char buffer[5] = {'\0'};
     getKeyboard(buffer,5);
     displayed = performCategoryAction(config->lang,displayed,buffer,maxChoice);
-    printf("\n");
   }
 }
 
@@ -41,7 +39,6 @@ int printCategoryElements(Language *lang,Category *cat){
   } else {
     i--;
   }
-  printf("\n");
   return i;
 }
 
@@ -84,8 +81,8 @@ int execCategoryCommand(Language *lang,CategoryCommand *command){
     askForCategoryPram(lang,cmd,param,parameters);
     param = getNextCategoryParam(cmd);
   }
-  printf("Execution de la commande : %s\n",cmd);
   execCommandSync(cmd);
+  toLog(cmd);
 }
 
 void askForCategoryPram(Language *lang,char* command,char paramType,char *paramsNames){
