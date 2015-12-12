@@ -10,7 +10,8 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
-#include "display.c"
+#include "assistant.h"
+#include "assistant.c"
 
 //Fonction init du shell
 //Parametres :
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]){
     break;
     case 1:
       //Mode pas a pas
-      //return initAssistantMode(); TODO Non implémenté
+      return initAssistantMode(configuration);
     break;
     case 2:
       //Mode naturel

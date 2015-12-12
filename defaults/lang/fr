@@ -1,5 +1,6 @@
 error.error=Erreur
 error.unknownMode=Mode non reconnu
+error.loadCategories=Impossible de charger les categories
 assistant.process=Gestion des processus
 assistant.listProcess=Lister les processus
 assistant.killProcess=Tuer un processus
