@@ -24,3 +24,4 @@ assistant.listThisDirectory=Lister le contenu du repertoir
 assistant.listSomeDirectory=Lister un répertoir
 assistant.createFile=Créer un fichier
 assistant.editFile=Editer un fichier
+assistant.param.fileToEdit=Fichier a editer

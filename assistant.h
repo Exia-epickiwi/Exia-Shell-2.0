@@ -23,6 +23,7 @@ struct CategoryElement{
 
 struct CategoryCommand{
   char command[COMMAND_LENGTH];
+  char parameters[COMMAND_LENGTH];
 };
 
 int initAssistantMode(Config *config);
@@ -38,5 +39,6 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
 int execCategoryCommand(char *command);
 char getNextCategoryParam(char *command);
 void askForCategoryPram(char* command,char paramType);
+char* getCategoryParams(char* buffer);
 
 #endif

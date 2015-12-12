@@ -10,6 +10,7 @@ int initAssistantMode(Config *config){
     printf("%s %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.loadCategories"));
     exit(EXIT_FAILURE);
   }
+  printCategoryTree(index,0);
   Category *displayed = index;
   while(1){
     printPrompt(config->prompt);
@@ -82,7 +83,7 @@ int execCategoryCommand(char *command){
     param = getNextCategoryParam(cmd);
   }
   printf("Execution de la commande : %s\n",cmd);
-  execCommandSync(cmd);
+  //execCommandSync(cmd);
 }
 
 void askForCategoryPram(char* command,char paramType){
@@ -182,6 +183,11 @@ Category* parseCategory(FILE *file,long position,Category *parent){
         CategoryCommand *newCommand = malloc(sizeof(CategoryCommand));
         strcpy(newCommand->command,command);
         free(command);
+        char *params = getCategoryParams(buffer);
+        if(params != NULL){
+          strcpy(newCommand->parameters,params);
+          free(params);
+        }
         lastElement->command = newCommand;
       }
     } else if(deep > baseDeep) {
@@ -233,8 +239,28 @@ char* getCategoryCommand(char* buffer){
   int finded = 0;
   int i,j = 0;
   char *result = NULL;
-  for(i = 0;i<strlen(buffer);i++){
+  for(i = 0;buffer[i] != '|' && i<strlen(buffer);i++){
     if(buffer[i] == ':' && finded != 1){
+      result = malloc(sizeof(char)*COMMAND_LENGTH);
+      finded = 1;
+    }else if(finded == 1){
+      result[j] = buffer[i];
+      j++;
+    }
+  }
+  if(finded == 1){
+    return result;
+  }else{
+    return NULL;
+  }
+}
+
+char* getCategoryParams(char* buffer){
+  int finded = 0;
+  int i,j = 0;
+  char *result = NULL;
+  for(i = 0;i<strlen(buffer);i++){
+    if(buffer[i] == '|' && finded != 1){
       result = malloc(sizeof(char)*COMMAND_LENGTH);
       finded = 1;
     }else if(finded == 1){
@@ -259,6 +285,9 @@ void printCategoryTree(Category *index,int deep){
     printf(">%s",next->name);
     if(next->command != NULL){
       printf(" / %s",next->command->command);
+      if(next->command->parameters != NULL){
+        printf("\t%s",next->command->parameters);
+      }
     }
     printf("\n");
     if(next->under != NULL){
