@@ -10,12 +10,12 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
-<<<<<<< HEAD
 #include "motd.h"
-=======
+#include "motd.c"
+#include "display.h"
 #include "display.c"
+#include "expert.h"
 
->>>>>>> 9e0e19b2d65cdb50f04175449af95fecba3f2c40
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
   switch(configuration->mode){
     case 0:
       //Mode expert
-      //return initExpertMode();  TODO Non implémenté
+      return initExpertMode(configuration);  //TODO Non implémenté
     break;
     case 1:
       //Mode pas a pas
