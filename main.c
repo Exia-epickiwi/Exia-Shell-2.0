@@ -12,7 +12,8 @@
 #include "language.c"
 #include "assistant.h"
 #include "assistant.c"
-
+#include "motd.h"
+#include "display.c"
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés
@@ -21,6 +22,7 @@
 int main(int argc, char *argv[]){
   //Chargement de la configuration
   Config *configuration = loadConfig();
+  printStartsInfos(configuration->locale);
   switch(configuration->mode){
     case 0:
       //Mode expert
