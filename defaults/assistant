@@ -1,18 +1,17 @@
 assistant.process
- assistant.listProcess:ps
+ assistant.listProcess:/bin/ps -u
  assistant.killProcess
-  assistant.killProcessNumber:kill %d
-  assistant.killProcessName:killall %s
+  assistant.killProcessNumber:/bin/kill %d
+  assistant.killProcessName:/bin/killall %s
 assistant.programs
  assistant.execute:/bin/%s
  assistant.executeLocal:./%s
 assistant.users
- assistant.changePassword:passwd
+ assistant.changePassword:/bin/passwd
 assistant.periphManage
- assistant.mountPeriph:mount %d %d
+ assistant.mountPeriph:/bin/mount %s %s
 assistant.files
- assistant.currentDirectory:pwd
- assistant.listThisDirectory:ls
- assistant.listSomeDirectory:ls %d
- assistant.createFile:touch %d
- assistant.editFile:nano %d
+ assistant.currentDirectory:/bin/pwd
+ assistant.listSomeDirectory:/bin/ls %s
+ assistant.createFile:/bin/touch %s
+ assistant.editFile:/bin/nano %s

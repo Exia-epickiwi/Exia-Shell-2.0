@@ -11,7 +11,7 @@ int execCommand(char *str){
   char *p    = strtok (str, " ");
   int length = 0, i;
   while (p) {
-    args = realloc (args, sizeof (char*) * ++length);
+    args = realloc(args, sizeof (char*) * ++length);
     args[length-1] = p;
     p = strtok (NULL," ");
   }

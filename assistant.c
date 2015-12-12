@@ -1,7 +1,8 @@
 #include <stdlib.h>
-#include "assistant.h"
 #include <string.h>
+#include "assistant.h"
 #include "display.h"
+#include "exec.h"
 
 int initAssistantMode(Config *config){
   Category *index = loadCategories(PATH_ASSISTANT);
@@ -57,18 +58,82 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
   while(next != NULL){
     if(i == choice){
       if(next->command){
-        printf("\nExecution de la commande %s",next->command->command);
+        printf("\n");
+        execCategoryCommand(next->command->command);
+        printf("\n");
       }
       if(next->under){
         nowCategory = next->under;
       }
-      printf("\n");
       return nowCategory;
     }
     i++;
     next = next->next;
   }
   return nowCategory->parent->above;
+}
+
+int execCategoryCommand(char *command){
+  char cmd[COMMAND_LENGTH] = {'\0'};
+  strcpy(cmd,command);
+  char param = getNextCategoryParam(cmd);
+  while(param != -1){
+    askForCategoryPram(cmd,param);
+    param = getNextCategoryParam(cmd);
+  }
+  printf("Execution de la commande : %s\n",cmd);
+  execCommandSync(cmd);
+}
+
+void askForCategoryPram(char* command,char paramType){
+  switch(paramType){
+    case 'd':
+      printf("Number> ");
+    break;
+    case 's':
+      printf("String> ");
+    break;
+    default:
+      printf("Parameter> ");
+    break;
+  }
+  //Séparation de la chaine
+  char end[COMMAND_LENGTH];
+  int capture = 0;
+  int i,j;
+  for(i = 0,j = 0; i<strlen(command); i++){
+    if(command[i] == '%' && (command[i+1]>=97 && command[i+1]<=122)){
+      capture = i;
+      i += 2;
+    }
+    if(capture != 0){
+      end[j] = command[i];
+      j++;
+    }
+  }
+  command[capture] = '\0';
+  //Recuperation du paramètre
+  char buffer[COMMAND_LENGTH];
+  getKeyboard(buffer,COMMAND_LENGTH);
+  switch(paramType){
+    case 'd':
+      strcat(command,buffer);
+    break;
+    case 's': default:
+      strcat(command,buffer);
+    break;
+  }
+  strcat(command,end);
+}
+
+char getNextCategoryParam(char *command){
+  int i;
+  for(i = 0; i<strlen(command); i++){
+    if(command[i] == '%' && (command[i+1]>=97 && command[i+1]<=122)){
+      return command[i+1];
+    }
+  }
+  return -1;
 }
 
 Category* loadCategories(char *path){
