@@ -2,12 +2,12 @@ assistant.process
  assistant.listProcess:/bin/ps -u
  assistant.killProcess
   assistant.killProcessNumber:/bin/kill %d|assistant.param.process
-  assistant.killProcessName:/bin/killall %s|assistant.param.killProcessName
+  assistant.killProcessName:/usr/bin/killall %s|assistant.param.killProcessName
 assistant.programs
  assistant.execute:/bin/%s|assistant.param.execute
  assistant.executeLocal:./%s|assistant.param.execute
 assistant.users
- assistant.changePassword:/bin/passwd
+ assistant.changePassword:/usr/bin/passwd
 assistant.periphManage
  assistant.mountPeriph:/bin/mount %s %s|assistant.param.mountPeriph|assistant.param.mountTarget
 assistant.files

@@ -4,6 +4,19 @@
 #include "display.h"
 #include "exec.h"
 
+Category* parseCategory(FILE *file,long position,Category *parent);
+Category* loadCategories(char *path);
+int getDeep(char *buffer);
+void addCategoryElement(Category *parent,char *name,Category *under, CategoryCommand *command);
+char* getCategoryLineName(char* buffer);
+char* getCategoryCommand(char* buffer);
+int printCategoryElements(Language *lang,Category *cat);
+Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxChoice);
+int execCategoryCommand(Language *lang,CategoryCommand *command);
+char getNextCategoryParam(char *command);
+void askForCategoryPram(Language *lang,char* command,char paramType,char *pramsNames);
+char* getCategoryParams(char* buffer);
+
 //Fonction démarrant le mode assistant
 //Paramètres :
 //  config : Structure config contenant la configuration
