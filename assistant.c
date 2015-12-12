@@ -4,9 +4,10 @@
 
 int initAssistantMode(Config *config){
   Category *index = loadCategories(PATH_ASSISTANT);
-  if(index == NULL)
+  if(index == NULL){
     printf("%s %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.loadCategories"));
     exit(EXIT_FAILURE);
+  }
 }
 
 Category* loadCategories(char *path){
