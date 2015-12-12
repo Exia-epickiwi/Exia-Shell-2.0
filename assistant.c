@@ -4,6 +4,10 @@
 #include "display.h"
 #include "exec.h"
 
+//Fonction démarrant le mode assistant
+//Paramètres :
+//  config : Structure config contenant la configuration
+//Renvoie : Le code d'arret du programme
 int initAssistantMode(Config *config){
   Category *index = loadCategories(PATH_ASSISTANT);
   if(index == NULL){
@@ -26,6 +30,11 @@ int initAssistantMode(Config *config){
   }
 }
 
+//Affiche les éléments d'une catégorie
+//Paramètres :
+//  lang : Structure de langue
+//  cat : structure catégorie a afficher
+//Renvoie : Le dernier numero de la liste
 int printCategoryElements(Language *lang,Category *cat){
   CategoryElement *next = cat->first;
   int i = 1;
@@ -42,6 +51,13 @@ int printCategoryElements(Language *lang,Category *cat){
   return i;
 }
 
+//Execute une action en fonction de ce que demmande l'utilisateur
+//Paramètres :
+//  lang : Structure de langue
+//  nowCategory : Catégorie actuellement visionnée
+//  input : Ce qu'a entré l'utilisateur
+//  maxInput : Dernier numero de la liste d'elements affchés
+//Renvoie : La nouvelle catégorie a afficher
 Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxInput){
   int choice = atoi(input);
   if(choice == 0){
@@ -74,6 +90,11 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
   return nowCategory->parent->above;
 }
 
+//Executer une commande utilisateur en lui demandant les paramètres
+//Paramètres :
+//  lang : Structure de langu
+//  command : structure CategoryCommand contenant les informations de commande
+//Renvoie : 0 si cela a marché 1 si non
 int execCategoryCommand(Language *lang,CategoryCommand *command){
   char cmd[COMMAND_LENGTH] = {'\0'};
   strcpy(cmd,command->command);
@@ -88,6 +109,12 @@ int execCategoryCommand(Language *lang,CategoryCommand *command){
   return execCommandSync(cmd);
 }
 
+//Demande un paramètre a l'utilisateur
+//Paramètres :
+//  lang : Structure de langue
+//  command : commande a executer
+//  paramType : type de paramètre
+//  paramsNames : Liste de paramètres formatés
 void askForCategoryPram(Language *lang,char* command,char paramType,char *paramsNames){
   char param[COMMAND_LENGTH] = {'\0'};
   if(paramsNames != NULL){
@@ -129,6 +156,10 @@ void askForCategoryPram(Language *lang,char* command,char paramType,char *params
   strcat(command,end);
 }
 
+//Récupère le prochain paramètre a remplire
+//Paramètres :
+//  command : commande a executer
+//Renvoie : le type de paramètre -1 si aucun paramètre n'est requis
 char getNextCategoryParam(char *command){
   int i;
   for(i = 0; i<strlen(command); i++){
@@ -139,6 +170,9 @@ char getNextCategoryParam(char *command){
   return -1;
 }
 
+//Charge les catégories
+//Paramètres :
+//  path : chemin du fichier ou charger les catégories
 Category* loadCategories(char *path){
   //Ouvrir un fichier
   FILE *categoryFile = fopen(path,"r");
@@ -147,8 +181,13 @@ Category* loadCategories(char *path){
     return NULL;
   //Lecture de chaque ligne
   return parseCategory(categoryFile,ftell(categoryFile),NULL);
+  //Fermeture du fichier
+  fclose(categoryFile);
 }
 
+//Parse les catégories en une structure en arbre
+//Paramètres :
+//  file : structure FILE décrivant le fichier ouvert
 Category* parseCategory(FILE *file,long position,Category *parent){
   //On place le curseur a la position donnée
   fseek(file,position,SEEK_SET);
@@ -205,6 +244,10 @@ Category* parseCategory(FILE *file,long position,Category *parent){
   return parent;
 }
 
+//Calcul la profondeur d'une ligne dans l'arbre
+//Paramètres :
+//  buffer : ligne a mesurer
+//Renvoie : La profondeur
 int getDeep(char *buffer){
   int deep = 0;
   while (buffer[deep]==' ') {
@@ -213,6 +256,12 @@ int getDeep(char *buffer){
   return deep;
 }
 
+//Ajout un élément a une catégorie
+//Paramètres :
+//  parent : Catégorie contenant le tout
+//  name : Nom de l'élément
+//  under : eventuelle sous-catégorie
+//  command : eventuelle commande a executer si choisi
 void addCategoryElement(Category *parent,char *name,Category *under, CategoryCommand *command){
   CategoryElement *element = malloc(sizeof(CategoryElement));
   element->under = under;
@@ -228,6 +277,10 @@ void addCategoryElement(Category *parent,char *name,Category *under, CategoryCom
   parent->last = element;
 }
 
+//Récupère le nom de l'element a partir d'une chaine
+//Paramètres :
+//  buffer : ligne a mesurer
+//Renvoie : le nom de l'element
 char* getCategoryLineName(char* buffer){
   char *result = malloc(sizeof(char)*COMMAND_LENGTH);
   int i,j = 0;
@@ -241,6 +294,10 @@ char* getCategoryLineName(char* buffer){
   return result;
 }
 
+//Récupère la commande a executer a partir d'une chaine
+//Paramètres :
+//  buffer : ligne a mesurer
+//Renvoie : la commande a executer
 char* getCategoryCommand(char* buffer){
   int finded = 0;
   int i,j = 0;
@@ -262,6 +319,10 @@ char* getCategoryCommand(char* buffer){
   }
 }
 
+//Récupère les paramètres a partir d'une chaine
+//Paramètres :
+//  buffer : ligne a mesurer
+//Renvoie : les paramètres de la commande
 char* getCategoryParams(char* buffer){
   int finded = 0;
   int i,j = 0;
@@ -283,6 +344,10 @@ char* getCategoryParams(char* buffer){
   }
 }
 
+//Affiche un arbre des différentes catégories
+//Paramètres :
+//  index : Catégorie de base
+//  deep : profondeur de base
 void printCategoryTree(Category *index,int deep){
   CategoryElement *next = index->first;
   while(next != NULL){
