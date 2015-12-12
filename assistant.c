@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "assistant.h"
 #include <string.h>
+#include "display.h"
 
 int initAssistantMode(Config *config){
   Category *index = loadCategories(PATH_ASSISTANT);
@@ -8,6 +9,37 @@ int initAssistantMode(Config *config){
     printf("%s %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.loadCategories"));
     exit(EXIT_FAILURE);
   }
+  Category *displayed = index;
+  while(1){
+    printPrompt(config->prompt);
+    if(index == displayed){
+      printf("%s\n", toLocaleString(config->lang,"assistant.indexPrompt"));
+    } else {
+      printf("%s\n", toLocaleString(config->lang,displayed->parent->name));
+    }
+    int maxChoice = printCategoryElements(config->lang,displayed);
+    printf("%s (1-%d) : ",toLocaleString(config->lang,"assistant.promptChoice"),maxChoice);
+    char buffer[5] = {'\0'};
+    getKeyboard(buffer,5);
+    printf("\n");
+  }
+}
+
+int printCategoryElements(Language *lang,Category *cat){
+  CategoryElement *next = cat->first;
+  int i = 1;
+  while(next != NULL){
+    printf("%d - %s\n",i,toLocaleString(lang,next->name));
+    i++;
+    next = next->next;
+  }
+  if(cat->parent != NULL){
+    printf("%d - %s\n",i,toLocaleString(lang,"assistant.back"));
+  } else {
+    i--;
+  }
+  printf("\n");
+  return i;
 }
 
 Category* loadCategories(char *path){
@@ -60,6 +92,7 @@ Category* parseCategory(FILE *file,long position,Category *parent){
       }
     } else if(deep > baseDeep) {
       lastElement->under = parseCategory(file,lastPosition,NULL);
+      lastElement->under->parent = lastElement;
     }
     lastPosition = ftell(file);
   }

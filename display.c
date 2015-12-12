@@ -6,7 +6,7 @@
 //Paramètres :
 //  prompt : Prompt personnalisé
 void printPrompt(char *prompt){
-  printf("%s>",prompt);
+  printf("%s> ",prompt);
 }
 
 //Fonction récupèrant de manière sécurisée une entrée clavier

@@ -1,6 +1,9 @@
 error.error=Erreur
 error.unknownMode=Mode non reconnu
 error.loadCategories=Impossible de charger les categories
+assistant.indexPrompt=Que souhaitez vous faire ?
+assistant.back=Retour
+assistant.promptChoice=Votre choix
 assistant.process=Gestion des processus
 assistant.listProcess=Lister les processus
 assistant.killProcess=Tuer un processus

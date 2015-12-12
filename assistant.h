@@ -10,6 +10,7 @@ typedef struct CategoryCommand CategoryCommand;
 struct Category{
   CategoryElement *first;
   CategoryElement *last;
+  CategoryElement *parent;
 };
 
 struct CategoryElement{
@@ -31,5 +32,6 @@ void addCategoryElement(Category *parent,char *name,Category *under, CategoryCom
 char* getCategoryLineName(char* buffer);
 void printCategoryTree(Category *index,int deep);
 char* getCategoryCommand(char* buffer);
+int printCategoryElements(Language *lang,Category *cat);
 
 #endif
