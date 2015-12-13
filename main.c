@@ -14,6 +14,7 @@
 #include "assistant.c"
 #include "motd.h"
 #include "display.c"
+#include "exec.h"
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés

@@ -118,8 +118,9 @@ int execCategoryCommand(Language *lang,CategoryCommand *command){
     askForCategoryPram(lang,cmd,param,parameters);
     param = getNextCategoryParam(cmd);
   }
+  int pid = execCommandSync(cmd);
   toLog(cmd);
-  return execCommandSync(cmd);
+  return pid;
 }
 
 //Demande un paramètre a l'utilisateur
