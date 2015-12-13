@@ -25,7 +25,6 @@ int main(int argc, char *argv[]){
   //Chargement de la configuration
   Config *configuration = loadConfig();
   printStartsInfos(configuration->locale);
-  initHanoiGame(configuration->lang);
   switch(configuration->mode){
     case 0:
       //Mode expert
