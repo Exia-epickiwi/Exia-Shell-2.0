@@ -15,6 +15,7 @@
 #include "display.h"
 #include "display.c"
 #include "expert.h"
+#include "expert.c"
 
 //Fonction init du shell
 //Parametres :
