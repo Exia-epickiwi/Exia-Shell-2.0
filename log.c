@@ -8,7 +8,7 @@ char *removeN(char *tableau);
 
 void toLog(char *string){
   //Ouvre le fichier
-  FILE *fileLog = fopen("exsh.log", "r+");
+  FILE *fileLog = fopen(PATH_LOG, "r+");
 
   //Initialise la date de la machine
   time_t t;

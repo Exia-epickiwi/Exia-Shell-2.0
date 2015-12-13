@@ -12,6 +12,7 @@ assistant.periphManage
  assistant.mountPeriph:/bin/mount %s %s|assistant.param.mountPeriph|assistant.param.mountTarget
 assistant.files
  assistant.currentDirectory:/bin/pwd
+ assistant.changeDirectory:cd %s|assistant.param.targetDirectory
  assistant.listSomeDirectory:/bin/ls %s|assistant.param.folderToList
  assistant.createFile:/bin/touch %s|assistant.param.fileToCreate
  assistant.editFile:/bin/nano %s|assistant.param.fileToEdit

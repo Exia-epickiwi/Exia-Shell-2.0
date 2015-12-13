@@ -33,3 +33,5 @@ assistant.param.mountTarget=Emplacement de montage
 assistant.param.execute=Fichier a executer
 assistant.param.killProcessName=Nom du processus
 assistant.param.process=PID du processus
+assistant.param.targetDirectory=Chemin ou se déplacer
+assistant.changeDirectory=Se deplacer dans un dossier

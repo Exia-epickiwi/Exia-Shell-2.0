@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include "cd.h"
 #include "exec.h"
 
 //Fonction executant un programme suivant une commande
@@ -29,18 +30,25 @@ int execCommand(char *str){
     args[1] = NULL;
   }
 
-  int pid = fork();
-  if(pid == 0){
-    if(execvp(args[0],args) == -1){
-        printf("Erreur lors du lancement du programme");
-        exit(EXIT_FAILURE);
+  if(strcmp(args[0],"cd") == 0){
+    if(changeWorkingDirectory(args[1])==0){
+        return 1;
     }
-  }else if(pid < 0){
-    free(args);
     return -1;
   }else{
-    free(args);
-    return pid;
+    int pid = fork();
+    if(pid == 0){
+      if(execvp(args[0],args) == -1){
+        printf("Erreur lors du lancement du programme");
+        exit(EXIT_FAILURE);
+      }
+    }else if(pid < 0){
+      free(args);
+      return -1;
+    }else{
+      free(args);
+      return pid;
+    }
   }
 }
 
