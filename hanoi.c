@@ -16,18 +16,36 @@ void printDisc(int size,int maxSize);
 HanoiDisc* getHanoiDisc(HanoiTower *tower,int index);
 HanoiDisc* removeHanoiDisc(HanoiTower *tower);
 int moveHanoiDisc(HanoiTower *from, HanoiTower *to);
+void startGame(Language *lang,int discNumber);
 
 void initHanoiGame(Language *lang){
+  printf("%s\n",toLocaleString(lang,"hanoi.name"));
+  printf("%s\n",toLocaleString(lang,"hanoi.rules"));
+  char enterDiff[5];
+  int discNumber = 0;
+  int maxDisc = 10;
+  do{
+    printf("%s (3-%d) : ",toLocaleString(lang,"hanoi.askDisc"),maxDisc);
+    getKeyboard(enterDiff,5);
+    discNumber = atoi(enterDiff);
+  }while(discNumber<3 || discNumber>maxDisc);
+  startGame(lang,discNumber);
+}
+
+void startGame(Language *lang,int discNumber){
   //Creation des trois tours avec le nombre requis de disques
   HanoiTower* towers[TOWER_NUMBER];
-  int discNumber = 5;
   int i;
   for(i=0;i<TOWER_NUMBER;i++){
     towers[i] = createHanoiTower();
   }
+  //Remplissage de le première
   fillHanoiTower(towers[0],1,discNumber);
+  //Affichage
   printHanoiTowers(towers,TOWER_NUMBER,discNumber);
   printf("\n%s\n",toLocaleString(lang,"hanoi.moveInstructions"));
+  //Demarrage du chrono
+  time_t start = time(NULL);
   while(towers[TOWER_NUMBER-1]->height < discNumber){
     printf("\n\n");
     printf("%s : ",toLocaleString(lang,"hanoi.move"));
@@ -47,6 +65,8 @@ void initHanoiGame(Language *lang){
       printf(COLOR_GREEN "%s\n" COLOR_RESET,toLocaleString(lang,"hanoi.moveSuccess"));
     }
   }
+  printf("\n\n%s\n",toLocaleString(lang,"hanoi.gameFinished"));
+  printf("%s %ds\n",toLocaleString(lang,"hanoi.gameDuration"),time(NULL)-start);
 }
 
 HanoiTower* createHanoiTower(){
