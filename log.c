@@ -3,6 +3,9 @@
 #include <string.h>
 #include <time.h>
 #include "log.h"
+#include "config.h"
+//Nombre de caractère maximale
+#define LINE_CHARACTER_MAX 150
 
 char *removeN(char *tableau);
 
@@ -22,7 +25,7 @@ void toLog(char *string){
 
   //si le fichier n'existe pas alors il créer un nouveau.
   if(fileLog == NULL){
-    fileLog = fopen("exsh.log", "w");
+    fileLog = fopen(PATH_LOG, "w");
     //Insère la première ligne dans le fichier
     fputs(logString, fileLog);
   } else {
@@ -46,4 +49,40 @@ char *removeN(char *tableau){
   }
   //Retourne le tableau si il doit être retournée
   return tableau;
+}
+
+void loadHistory(Config *config){
+  FILE *file = fopen(PATH_LOG, "r+");
+  HeadLog *headLog = malloc(sizeof(HeadLog));
+  headLog->first = NULL;
+  headLog->length = 0;
+  config->history = headLog;
+
+  if(file == NULL){
+    file = fopen(PATH_LOG, "w");
+  } else {
+    //Initiale un tableau char comportant la ligne en cours de lecture.
+    char lineConfig[LINE_CHARACTER_MAX];
+    //Récupére chaque ligne du fileConfig
+    while(fgets(lineConfig, LINE_CHARACTER_MAX, file)){
+      ElementLog *elementLog = malloc(sizeof(ElementLog));
+      strtok(lineConfig, "-");
+      strcpy(elementLog->command, strtok(NULL, "\0"));
+
+      elementLog->next = config->history->first;
+      config->history->first = elementLog;
+      config->history->length++;
+      if(config->history->length > 25) break;
+    }
+  }
+}
+
+void seeLog(Config *config){
+  int index = 0;
+  ElementLog *elementLog = config->history->first;
+  for(;elementLog != NULL; index++){
+    printf("%s", elementLog->command);
+    if(elementLog->next == NULL) break;
+    elementLog = elementLog->next;
+  }
 }

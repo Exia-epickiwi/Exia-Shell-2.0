@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Taille des clefs de langue
-#define KEY_LENGTH 128
-//Taille maximum d'une commande
-#define COMMAND_LENGTH 256
+
+#include "main.h"
 //Fichier relatif aux couleurs
 #include "color.h"
+
 #include "config.h"
 #include "language.h"
 #include "assistant.h"

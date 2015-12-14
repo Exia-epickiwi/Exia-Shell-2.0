@@ -5,12 +5,14 @@
 #include <errno.h>
 #include "cd.h"
 #include "exec.h"
+#include "config.h"
+#include "hanoi.h"
 
 //Fonction executant un programme suivant une commande
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
 //Renvoie : le pid du process executé ou -1 si il y a eu une erreur
-int execCommand(char *str){
+int execCommand(char *str, Config *config){
   char cmd[255];
   strcpy(cmd,str);
   char **args = NULL;
@@ -35,11 +37,17 @@ int execCommand(char *str){
         return 1;
     }
     return -1;
-  }else{
+  } else if(strcmp(args[0],"exit") == 0 || strcmp(args[0], "/bin/exit") == 0){
+    exit(0);
+  } else if(strcmp(args[0],"history") == 0 || strcmp(args[0], "/bin/history") == 0){
+    seeLog(config);
+  } else if(strcmp(args[0], "hanoi") == 0 || strcmp(args[0], "/bin/hanoi") == 0){
+    initHanoiGame(config->lang);
+  } else {
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
-        printf("Erreur lors du lancement du programme");
+        printf("Erreur lors du lancement du programme\n");
         exit(EXIT_FAILURE);
       }
     }else if(pid < 0){
@@ -56,8 +64,8 @@ int execCommand(char *str){
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
 //Renvoie : 1 si tout c'est bien passé si non 0
-int execCommandSync(char *command){
-  int pid = execCommand(command);
+int execCommandSync(char *command, Config *config){
+  int pid = execCommand(command, config);
   if(pid > 0){
     wait(pid);
     return 1;

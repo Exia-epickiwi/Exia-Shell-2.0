@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "config.h"
 #include "language.h"
+#include "log.h"
 //Nombre de caractère maximale
 #define LINE_CHARACTER_MAX 150
 //Prototype type de c'est fonction
@@ -19,11 +20,12 @@ Config *loadConfig(){
 
   //Si le fileConfig n'existe pas alors il l'écrit
   if(fileConfig == NULL){
-    //On insere desd valeurs par défaut
+    //On insere des valeurs par défaut
     config->mode = 0;
     config->lang = NULL;
     strcpy(config->locale, "fr");
     strcpy(config->prompt, "exsh");
+
   } else {
     //Initiale un tableau char comportant la ligne en cours de lecture.
     char lineConfig[LINE_CHARACTER_MAX];
@@ -50,6 +52,8 @@ Config *loadConfig(){
     char path[] = PATH_LANGUAGE;
     config->lang = loadLanguage(strcat(path,config->locale));
   }
+  //Charge l'historique des anciennes sessions
+  loadHistory(config);
   //Ferme le fichier correctement
   fclose(fileConfig);
   //retourne la structure config initialisé
@@ -64,11 +68,12 @@ char *separationChain(char config[], char separation){
     //Si le caractère est égale au caractère
     if(config[a] == separation){
       //Créer un nouveau tableau et initialise tout les cases
-      char *s = calloc(a, sizeof(char));
+      char *s = calloc(a+1, sizeof(char));
       //Met le tableau pour sauvegarder et renvoie un tableau de char
       for (b = 0; b < a; b++) {
         s[b] = config[b];
       }
+      s[b+1] = '\0';
       //Déplace le tableau en enlevant le tableau s[]
       moveIndex(config, a+1, LINE_CHARACTER_MAX);
       //renvoie le tableau s
