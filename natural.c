@@ -23,7 +23,7 @@ int initNaturalMode(Config *configuration){
     if(command == NULL){
       printf(COLOR_RED "%s\n" COLOR_RESET,toLocaleString(configuration->lang,"natural.notFound"));
     } else {
-      int result = execCommandSync(command);
+      int result = execCommandSync(command,configuration);
       if(result == 0){
         printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(configuration->lang,"error.error"),toLocaleString(configuration->lang,"error.programError"));
       }
