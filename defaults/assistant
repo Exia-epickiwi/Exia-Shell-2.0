@@ -16,3 +16,5 @@ assistant.files
  assistant.listSomeDirectory:/bin/ls %s|assistant.param.folderToList
  assistant.createFile:/bin/touch %s|assistant.param.fileToCreate
  assistant.editFile:/bin/nano %s|assistant.param.fileToEdit
+assistant.exit
+ assistant.confirmExit:/bin/exit

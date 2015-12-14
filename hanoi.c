@@ -17,6 +17,7 @@ HanoiDisc* getHanoiDisc(HanoiTower *tower,int index);
 HanoiDisc* removeHanoiDisc(HanoiTower *tower);
 int moveHanoiDisc(HanoiTower *from, HanoiTower *to);
 void startGame(Language *lang,int discNumber);
+void saveScore(char *name, int score, int level);
 
 void initHanoiGame(Language *lang){
   printf("%s\n",toLocaleString(lang,"hanoi.name"));
@@ -66,7 +67,9 @@ void startGame(Language *lang,int discNumber){
     }
   }
   printf("\n\n%s\n",toLocaleString(lang,"hanoi.gameFinished"));
-  printf("%s %ds\n",toLocaleString(lang,"hanoi.gameDuration"),time(NULL)-start);
+  int score = time(NULL)-start;
+  printf("%s %ds\n",toLocaleString(lang,"hanoi.gameDuration"),score);
+  saveScore("exsh", score, discNumber);
 }
 
 HanoiTower* createHanoiTower(){
@@ -211,4 +214,18 @@ void printDisc(int size,int maxSize){
       }
     }
     printf(COLOR_RESET);
+}
+
+void saveScore(char *name, int score, int level){
+  FILE *file = fopen(PATH_SCORE, "r+");
+  char scor[50];
+  sprintf(scor, "[%d] %d - %s\n", level, score, name);
+  if(file == NULL){
+    file = fopen(PATH_SCORE, "w");
+    fputs(scor, file);
+  } else {
+    fseek(file, 0, SEEK_END);
+    fputs(scor, file);
+  }
+  fclose(file);
 }

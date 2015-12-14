@@ -1,22 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Taille des clefs de langue
-#define KEY_LENGTH 128
-//Taille maximum d'une commande
-#define COMMAND_LENGTH 256
+
+#include "main.h"
 //Fichier relatif aux couleurs
 #include "color.h"
+
 #include "config.h"
-#include "config.c"
 #include "language.h"
-#include "language.c"
 #include "assistant.h"
-#include "assistant.c"
 #include "motd.h"
 #include "display.h"
 #include "exec.h"
 #include "hanoi.h"
 #include "natural.h"
+#include "expert.h"
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés
@@ -29,7 +26,7 @@ int main(int argc, char *argv[]){
   switch(configuration->mode){
     case 0:
       //Mode expert
-      //return initExpertMode();  TODO Non implémenté
+      return initExpertMode(configuration);
     break;
     case 1:
       //Mode pas a pas

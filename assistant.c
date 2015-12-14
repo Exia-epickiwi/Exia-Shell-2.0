@@ -1,8 +1,14 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include "color.h"
+#include "config.h"
+#include "config.h"
 #include "assistant.h"
 #include "display.h"
 #include "exec.h"
+#include "log.h"
+#include "language.h"
 
 Category* parseCategory(FILE *file,long position,Category *parent);
 Category* loadCategories(char *path);
@@ -10,11 +16,11 @@ int getDeep(char *buffer);
 void addCategoryElement(Category *parent,char *name,Category *under, CategoryCommand *command);
 char* getCategoryLineName(char* buffer);
 char* getCategoryCommand(char* buffer);
-int printCategoryElements(Language *lang,Category *cat);
-Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxChoice);
-int execCategoryCommand(Language *lang,CategoryCommand *command);
+int printCategoryElements(Config *config,Category *cat);
+Category* performCategoryAction(Config *config,Category *nowCategory,char *input,int maxChoice);
+int execCategoryCommand(Config *config,CategoryCommand *command);
 char getNextCategoryParam(char *command);
-void askForCategoryPram(Language *lang,char* command,char paramType,char *pramsNames);
+void askForCategoryPram(Config *config,char* command,char paramType,char *pramsNames);
 char* getCategoryParams(char* buffer);
 
 //Fonction démarrant le mode assistant
@@ -35,11 +41,11 @@ int initAssistantMode(Config *config){
     } else {
       printf("%s\n", toLocaleString(config->lang,displayed->parent->name));
     }
-    int maxChoice = printCategoryElements(config->lang,displayed);
+    int maxChoice = printCategoryElements(config,displayed);
     printf("%s (1-%d) : ",toLocaleString(config->lang,"assistant.promptChoice"),maxChoice);
     char buffer[5] = {'\0'};
     getKeyboard(buffer,5);
-    displayed = performCategoryAction(config->lang,displayed,buffer,maxChoice);
+    displayed = performCategoryAction(config,displayed,buffer,maxChoice);
   }
 }
 
@@ -48,16 +54,16 @@ int initAssistantMode(Config *config){
 //  lang : Structure de langue
 //  cat : structure catégorie a afficher
 //Renvoie : Le dernier numero de la liste
-int printCategoryElements(Language *lang,Category *cat){
+int printCategoryElements(Config *config,Category *cat){
   CategoryElement *next = cat->first;
   int i = 1;
   while(next != NULL){
-    printf("%d - %s\n",i,toLocaleString(lang,next->name));
+    printf("%d - %s\n",i,toLocaleString(config->lang,next->name));
     i++;
     next = next->next;
   }
   if(cat->parent != NULL){
-    printf("%d - %s\n",i,toLocaleString(lang,"assistant.back"));
+    printf("%d - %s\n",i,toLocaleString(config->lang,"assistant.back"));
   } else {
     i--;
   }
@@ -71,13 +77,13 @@ int printCategoryElements(Language *lang,Category *cat){
 //  input : Ce qu'a entré l'utilisateur
 //  maxInput : Dernier numero de la liste d'elements affchés
 //Renvoie : La nouvelle catégorie a afficher
-Category* performCategoryAction(Language *lang,Category *nowCategory,char *input,int maxInput){
+Category* performCategoryAction(Config *config,Category *nowCategory,char *input,int maxInput){
   int choice = atoi(input);
   if(choice == 0){
-    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.assistant.unknownChoice"));
+    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.assistant.unknownChoice"));
     return nowCategory;
   } else if(choice > maxInput || choice < 1){
-    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.assistant.outChoice"));
+    printf(COLOR_RED "\n%s" COLOR_RESET " %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.assistant.outChoice"));
     return nowCategory;
   }
   int i = 1;
@@ -86,9 +92,9 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
   while(next != NULL){
     if(i == choice){
       if(next->command){
-        int success = execCategoryCommand(lang,next->command);
+        int success = execCategoryCommand(config, next->command);
         if(success == 0){
-          printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(lang,"error.error"),toLocaleString(lang,"error.programError"));
+          printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(config->lang,"error.error"),toLocaleString(config->lang,"error.programError"));
         }
         printf("\n");
       }
@@ -108,17 +114,17 @@ Category* performCategoryAction(Language *lang,Category *nowCategory,char *input
 //  lang : Structure de langu
 //  command : structure CategoryCommand contenant les informations de commande
 //Renvoie : 0 si cela a marché 1 si non
-int execCategoryCommand(Language *lang,CategoryCommand *command){
+int execCategoryCommand(Config *config,CategoryCommand *command){
   char cmd[COMMAND_LENGTH] = {'\0'};
   strcpy(cmd,command->command);
   char parameters[COMMAND_LENGTH] = {'\0'};
   strcpy(parameters,command->parameters);
   char param = getNextCategoryParam(cmd);
   while(param != -1){
-    askForCategoryPram(lang,cmd,param,parameters);
+    askForCategoryPram(config,cmd,param,parameters);
     param = getNextCategoryParam(cmd);
   }
-  int pid = execCommandSync(cmd);
+  int pid = execCommandSync(cmd, config);
   toLog(cmd);
   return pid;
 }
@@ -129,7 +135,7 @@ int execCategoryCommand(Language *lang,CategoryCommand *command){
 //  command : commande a executer
 //  paramType : type de paramètre
 //  paramsNames : Liste de paramètres formatés
-void askForCategoryPram(Language *lang,char* command,char paramType,char *paramsNames){
+void askForCategoryPram(Config *config,char* command,char paramType,char *paramsNames){
   char param[COMMAND_LENGTH] = {'\0'};
   if(paramsNames != NULL){
     int k;
@@ -143,7 +149,7 @@ void askForCategoryPram(Language *lang,char* command,char paramType,char *params
       l++;
     }
     paramsNames[l] = '\0';
-    printf("%s : ",toLocaleString(lang,param));
+    printf("%s : ",toLocaleString(config->lang,param));
   } else {
     printf("> ");
   }

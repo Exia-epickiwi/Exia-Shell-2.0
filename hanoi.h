@@ -1,6 +1,6 @@
 #ifndef _HANOIHEADER_
 #define _HANOIHEADER_
-
+#define PATH_SCORE "/tmp/score_hanoi_exsh"
 typedef struct HanoiTower HanoiTower;
 typedef struct HanoiDisc HanoiDisc;
 
