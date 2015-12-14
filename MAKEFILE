@@ -2,4 +2,4 @@ all:
 	exsh
 
 exsh:
-	clear && gcc main.c log.c display.c exec.c cd.c config.c language.c assistant.c motd.c expert.c -o exsh && clear && ./exsh
+	clear && gcc main.c log.c display.c exec.c cd.c config.c language.c assistant.c motd.c expert.c hanoi.c -o exsh && clear && ./exsh

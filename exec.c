@@ -6,6 +6,7 @@
 #include "cd.h"
 #include "exec.h"
 #include "config.h"
+#include "hanoi.h"
 
 //Fonction executant un programme suivant une commande
 //Paramètres :
@@ -36,10 +37,12 @@ int execCommand(char *str, Config *config){
         return 1;
     }
     return -1;
-  }else if(strcmp(args[0],"exit") == 0 || strcmp(args[0], "/bin/exit") == 0){
+  } else if(strcmp(args[0],"exit") == 0 || strcmp(args[0], "/bin/exit") == 0){
     exit(0);
   } else if(strcmp(args[0],"history") == 0 || strcmp(args[0], "/bin/history") == 0){
     seeLog(config);
+  } else if(strcmp(args[0], "hanoi") == 0 || strcmp(args[0], "/bin/hanoi") == 0){
+    initHanoiGame(config->lang);
   } else {
     int pid = fork();
     if(pid == 0){

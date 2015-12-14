@@ -68,11 +68,12 @@ char *separationChain(char config[], char separation){
     //Si le caractère est égale au caractère
     if(config[a] == separation){
       //Créer un nouveau tableau et initialise tout les cases
-      char *s = calloc(a, sizeof(char));
+      char *s = calloc(a+1, sizeof(char));
       //Met le tableau pour sauvegarder et renvoie un tableau de char
       for (b = 0; b < a; b++) {
         s[b] = config[b];
       }
+      s[b+1] = '\0';
       //Déplace le tableau en enlevant le tableau s[]
       moveIndex(config, a+1, LINE_CHARACTER_MAX);
       //renvoie le tableau s
