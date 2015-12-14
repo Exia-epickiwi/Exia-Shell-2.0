@@ -10,16 +10,16 @@
 int initExpertMode(Config *configuration) {
   //initialise la chemin des exécutables
   char pathCommande[] = "/bin/";
+  char commande[250];
   do {
     char cmd[256];
     printPrompt(configuration->prompt);
-    if(getKeyboard(cmd, 256) == 0) return 0;
+    if(getKeyboard(commande, 256) == 0) return 0;
+    toLog(commande);
 
-    if(strcmp(cmd, "exit") == 0) break;
+    if((commande[0] != '.' && commande[1] != '/') || commande[0] != '/') sprintf(cmd, "%s%s", pathCommande, commande);
+    execCommandSync(cmd, configuration);
 
-    if((cmd[0] != '.' && cmd[1] != '/') || cmd[0] != '/') sprintf(cmd, "%s%s", pathCommande, cmd);
-    execCommandSync(cmd);
-    toLog(cmd);
   }while(1);
  return 0;
 }

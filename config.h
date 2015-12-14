@@ -14,8 +14,9 @@
   struct Config {
     int mode;
     char locale[3];
-    char prompt[256];
+    char prompt[COMMAND_LENGTH];
     Language *lang;
+    HeadLog *history;
   };
 
   struct HeadLog {
@@ -24,7 +25,7 @@
   };
   struct ElementLog {
     ElementLog *next;
-    char commande[COMMAND_LENGTH];
+    char command[COMMAND_LENGTH];
   };
 
   Config *loadConfig();
