@@ -16,6 +16,7 @@
 #include "display.c"
 #include "exec.h"
 #include "hanoi.h"
+#include "natural.h"
 //Fonction init du shell
 //Parametres :
 //  argc : Nombre d'arguments passés
@@ -36,7 +37,7 @@ int main(int argc, char *argv[]){
     break;
     case 2:
       //Mode naturel
-      //return initNaturalMode(); TODO Non implémenté
+      return initNaturalMode(configuration);
     break;
     default:
       printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(configuration->lang,"error.error"),toLocaleString(configuration->lang,"error.unknownMode"));
