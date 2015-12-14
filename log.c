@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "log.h"
+#include "config.h"
 
 char *removeN(char *tableau);
 
@@ -46,4 +47,8 @@ char *removeN(char *tableau){
   }
   //Retourne le tableau si il doit être retournée
   return tableau;
+}
+
+void loadHistory(Config *config){
+
 }

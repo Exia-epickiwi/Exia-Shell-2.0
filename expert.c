@@ -8,18 +8,18 @@
 #include "log.h"
 
 int initExpertMode(Config *configuration) {
-  char commande[250];
+  //initialise la chemin des exécutables
   char pathCommande[] = "/bin/";
   do {
     char cmd[256];
     printPrompt(configuration->prompt);
-    if(getKeyboard(commande, 256) == 0) return 0;
+    if(getKeyboard(cmd, 256) == 0) return 0;
 
-    if(strcmp(commande, "exit") == 0) break;
+    if(strcmp(cmd, "exit") == 0) break;
 
-    if((commande[0] != '.' && commande[1] != '/') || commande[0] != '/') sprintf(cmd, "%s%s", pathCommande, commande);
+    if((cmd[0] != '.' && cmd[1] != '/') || cmd[0] != '/') sprintf(cmd, "%s%s", pathCommande, cmd);
     execCommandSync(cmd);
-    toLog(commande);
+    toLog(cmd);
   }while(1);
  return 0;
 }
