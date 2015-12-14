@@ -11,4 +11,5 @@ void printStartsInfos(char *locale){
   while(fgets(line, 256, file)){
     printf("%s", line);
   }
+  printf("\n");
 }

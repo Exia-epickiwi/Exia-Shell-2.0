@@ -10,9 +10,9 @@
 #include "config.c"
 #include "language.h"
 #include "language.c"
+#include "assistant.h"
+#include "assistant.c"
 #include "motd.h"
-#include "motd.c"
-#include "display.h"
 #include "display.c"
 #include "expert.h"
 #include "expert.c"
@@ -29,11 +29,11 @@ int main(int argc, char *argv[]){
   switch(configuration->mode){
     case 0:
       //Mode expert
-      return initExpertMode(configuration);  //TODO Non implémenté
+      //return initExpertMode();  TODO Non implémenté
     break;
     case 1:
       //Mode pas a pas
-      //return initAssistantMode(); TODO Non implémenté
+      return initAssistantMode(configuration);
     break;
     case 2:
       //Mode naturel

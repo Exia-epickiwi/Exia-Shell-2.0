@@ -3,6 +3,7 @@
 
 #define PATH_PROFILE "/etc/exsh/profile"
 #define PATH_LANGUAGE "/etc/exsh/lang/"
+#define PATH_ASSISTANT "/etc/exsh/assistant"
 
 typedef struct LangString LangString;
 typedef struct Language Language;

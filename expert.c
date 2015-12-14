@@ -18,7 +18,7 @@ int initExpertMode(Config *configuration) {
     if(getKeyboard(commande, 256) == 0) return 0;
 
     if(strcmp(commande, "exit") == 0) break;
-    if(commande[0] != '.' && commande[1] != '/') strcat(pathCommande, commande);
+    if((commande[0] != '.' && commande[1] != '/') || commande[0] != '/') strcat(pathCommande, commande);
     execCommandSync(pathCommande);
 
     toLog(commande);

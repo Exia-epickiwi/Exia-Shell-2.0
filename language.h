@@ -2,6 +2,8 @@
 #define _LANGUAGEHEADER_
 
 #define MAX_LANG_LINE_LENGTH 390
+#define KEY_LENGTH 128
+#define COMMAND_LENGTH 256
 
 typedef struct LangString LangString;
 
