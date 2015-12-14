@@ -13,7 +13,7 @@
 #include "assistant.h"
 #include "assistant.c"
 #include "motd.h"
-#include "display.c"
+#include "display.h"
 #include "exec.h"
 #include "hanoi.h"
 #include "natural.h"

@@ -46,3 +46,5 @@ hanoi.gameFinished=Felicitations ! Vous avez fini le jeu.
 hanoi.name=LES TOURS DE hanoi
 hanoi.rules=L'objectif est de faire passer tout les disques de la première tour a la derniere dans le bon ordre
 hanoi.askDisc=Choisissez un nombre de disque
+natural.prompt=Que voulez vous faire ?
+natural.notFound=Je n'ai pas compris.

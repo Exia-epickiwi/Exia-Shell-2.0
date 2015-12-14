@@ -39,6 +39,7 @@ int execCommand(char *str){
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
+        printf("Erreur lors du lancement du programme %s\n",args[0]);
         exit(EXIT_FAILURE);
       }
     }else if(pid < 0){

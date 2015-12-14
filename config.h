@@ -17,5 +17,6 @@ struct Config {
 };
 
 Config *loadConfig();
+char *separationChain(char config[], char separation);
 
 #endif

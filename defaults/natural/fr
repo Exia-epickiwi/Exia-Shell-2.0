@@ -1,3 +1,5 @@
-lister,repertoire,actuel|ls
-ou,suis,je|pwd
-repertoire,actuel|pwd
+lister,repertoire,actuel|/bin/ls
+lister,repertoire|/bin/ls %|directory
+ou,suis,je|/bin/pwd
+repertoire,actuel|/bin/pwd
+tuer,processus|/bin/kill %|number
