@@ -3,9 +3,10 @@
     int main(void)
     {
       
-        int ContainNumber (char**words);
+        int ContainNumber (char**pend);
+        int i
         char *pend = NULL;
-        while( i<1; next ;i++) {
+        for( i<1; next != NULL ;i++) {
         do
         {
             printf("Tappez un numerateur: ");
@@ -16,6 +17,5 @@
         }
         while (*pend != 0);
         return NULL;
-        return words [I];
     }
   }
