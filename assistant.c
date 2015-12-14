@@ -1,8 +1,13 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include "color.h"
+#include "config.h"
+#include "language.h"
 #include "assistant.h"
 #include "display.h"
 #include "exec.h"
+#include "log.h"
 
 Category* parseCategory(FILE *file,long position,Category *parent);
 Category* loadCategories(char *path);

@@ -1,6 +1,7 @@
 #ifndef _LANGUAGEHEADER_
 #define _LANGUAGEHEADER_
 
+#include <stdio.h>
 #define MAX_LANG_LINE_LENGTH 390
 #define KEY_LENGTH 128
 #define COMMAND_LENGTH 256

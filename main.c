@@ -7,15 +7,10 @@
 //Fichier relatif aux couleurs
 #include "color.h"
 #include "config.h"
-#include "config.c"
 #include "language.h"
-#include "language.c"
 #include "assistant.h"
-#include "assistant.c"
 #include "motd.h"
-#include "display.c"
 #include "expert.h"
-#include "expert.c"
 
 //Fonction init du shell
 //Parametres :
@@ -29,7 +24,7 @@ int main(int argc, char *argv[]){
   switch(configuration->mode){
     case 0:
       //Mode expert
-      //return initExpertMode();  TODO Non implémenté
+      return initExpertMode(configuration);
     break;
     case 1:
       //Mode pas a pas

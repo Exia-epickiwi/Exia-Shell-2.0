@@ -4,9 +4,7 @@
 #include "expert.h"
 #include "display.h"
 #include "exec.h"
-#include "exec.c"
 #include "config.h"
-#include "log.c"
 #include "log.h"
 
 int initExpertMode(Config *configuration) {
