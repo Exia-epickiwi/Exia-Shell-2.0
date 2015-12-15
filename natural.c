@@ -6,6 +6,7 @@
 #include "display.h"
 #include "natural.h"
 #include "color.h"
+#include "language.h"
 
 char** strSlice(char *str,char *separator);
 char* getCommandLine(char *locale,char *line);
