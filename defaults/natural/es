@@ -1,0 +1,34 @@
+lista,carpeta,corriente,decreciente|/bin/ls -r --color
+lista,directorio,corriente,decreciente|/bin/ls -r --color
+lista,directorio,decreciente|/bin/ls % -r --color|directory
+lista,carpeta,decreciente|/bin/ls % -r --color|directory
+lista,decreciente|/bin/ls % -r --color|directory
+lista,directorio,corriente|/bin/ls --color
+lista,carpeta,corriente|/bin/ls --color
+lista,directorio|/bin/ls % --color|directory
+lista,carpeta|/bin/ls % --color|directory
+lista|/bin/ls % --color|directory
+donde,estoy|/bin/pwd
+directorio,corriente|/bin/pwd
+hacer,archivo|/bin/touch %|directory
+hacer,carpeta|/bin/mkdir %|directory
+editar,archivo|/bin/nano %|directory
+modificar,archivo|/bin/nano %|directory
+borrar,archivo|/bin/rm %|directory
+borrar,carpeta|/bin/rmdir %|directory
+mostrar,archivo|/bin/more %|directory
+leer,archivo|/bin/more %|directory
+cambiar,clave|/bin/passwd
+super,administrador|/bin/su
+super,usuario|/bin/su
+modo,núcleo|/bin/su
+que,hora|/bin/date
+que,dia|/bin/date
+que,fecha|/bin/date
+que,ano|/bin/date
+lista,proceso|/bin/ps
+matar,proceso|/bin/kill %|number
+eliminar,proceso|/bin/kill %|number
+ejecutar,orden|/bin/%|directory
+ejecutar|%|directory
+imhotep|echo Exyptien.exe
