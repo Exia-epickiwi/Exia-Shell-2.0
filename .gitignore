@@ -32,3 +32,6 @@ exsh
 # Debug files
 *.dSYM/
 *.log
+
+# PDF
+*.pdf
