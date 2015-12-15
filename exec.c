@@ -7,7 +7,8 @@
 #include "exec.h"
 #include "config.h"
 #include "hanoi.h"
-
+#include "color.h"
+#include "language.h"
 //Fonction executant un programme suivant une commande
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
@@ -41,12 +42,26 @@ int execCommand(char *str, Config *config){
     exit(0);
   } else if(strcmp(args[0],"history") == 0 || strcmp(args[0], "/bin/history") == 0){
     seeLog(config);
+  } else if(strcmp(args[0], "help") == 0 || strcmp(args[0], "/bin/help") == 0){
+    char command[255] = {"/usr/bin/man "};
+    if(args[1] != NULL) strcat(command, args[1]);
+    execCommandSync(command, config);
+  } else if(strcmp(args[0], "/bin/ls") == 0){
+    char command[255] = {""};
+    strcat(command, "ls ");
+    int index = 1;
+    while(args[index]){strcat(command, args[index]);strcat(command, " "); index++;}
+
+    strcat(command, " --color");
+    execCommandSync(command, config);
   } else if(strcmp(args[0], "hanoi") == 0 || strcmp(args[0], "/bin/hanoi") == 0){
     initHanoiGame(config->lang);
   } else {
+    printf("%s\n", str);
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
+        printf(COLOR_RED "%s" COLOR_RESET " %s\n", toLocaleString(config->lang, "error.error"), toLocaleString(config->lang, "error.programError"));
         exit(EXIT_FAILURE);
       }
     }else if(pid < 0){
