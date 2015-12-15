@@ -1,5 +1,34 @@
-lister,repertoire,actuel|/bin/ls
-lister,repertoire|/bin/ls %|directory
+lister,dossier,actuel,decroissant|/bin/ls -r --color
+lister,repertoire,actuel,decroissant|/bin/ls -r --color
+lister,repertoire,decroissant|/bin/ls % -r --color|directory
+lister,dossier,decroissant|/bin/ls % -r --color|directory
+lister,decroissant|/bin/ls % -r --color|directory
+lister,repertoire,actuel|/bin/ls --color
+lister,dossier,actuel|/bin/ls --color
+lister,repertoire|/bin/ls % --color|directory
+lister,dossier|/bin/ls % --color|directory
+lister|/bin/ls % --color|directory
 ou,suis,je|/bin/pwd
 repertoire,actuel|/bin/pwd
+creer,fichier|/bin/touch %|directory
+creer,dossier|/bin/mkdir %|directory
+editer,fichier|/bin/nano %|directory
+modifier,fichier|/bin/nano %|directory
+supprimer,fichier|/bin/rm %|directory
+supprimer,dossier|/bin/rmdir %|directory
+afficher,fichier|/bin/more %|directory
+lire,fichier|/bin/more %|directory
+changer,mot,passe|/bin/passwd
+super,administrateur|/bin/su
+super,utilisateur|/bin/su
+mode,noyau|/bin/su
+quel,heure|/bin/date
+quel,jour|/bin/date
+quel,date|/bin/date
+quel,annee|/bin/date
+lister,processus|/bin/ps
 tuer,processus|/bin/kill %|number
+debarasser,processus|/bin/kill %|number
+executer,commande|/bin/%|directory
+executer|%|directory
+imhotep|echo Exyptien.exe
