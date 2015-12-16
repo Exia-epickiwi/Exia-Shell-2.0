@@ -57,12 +57,16 @@ int execCommand(char *str, Config *config) {
   } else if(strcmp(args[0],"wls") == 0) {
     //Si la commande est égale à wls alors exécute wls()
     if(args[1] != NULL && args[2] == NULL && strcmp(args[1],"-r") != 0) {
+      //Si on possède un chemin on executer depuis le chemin
       wls(args[1],WLS_NONE);
     } else if(args[1] != NULL && args[2] != NULL && strcmp(args[2],"-r") == 0) {
+      //Si on possède un chemin et un paramètre -r on affiche le contenu dans le sens inverse
       wls(args[1],WLS_NORDER);
     } else if(args[1] != NULL && strcmp(args[1],"-r") == 0){
+      //Si nous n'avons pas de chemin mais un -r on affiche le repertoire courant en sens inverse
       wls(".",WLS_NORDER);
     } else {
+      //Si non on affiche le dossier actuel dans le bon sens
       wls(".",WLS_NONE);
     }
   } else if(strcmp(args[0], "help") == 0) {
