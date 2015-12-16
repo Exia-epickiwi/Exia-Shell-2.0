@@ -32,3 +32,5 @@ debarasser,processus|/bin/kill %|number
 executer,commande|/bin/%|directory
 executer|%|directory
 imhotep|echo Exyptien.exe
+modifier, mode|setMode
+relancer, exsh|reboot

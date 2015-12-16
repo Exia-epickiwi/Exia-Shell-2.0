@@ -51,13 +51,19 @@ int execCommand(char *str, Config *config){
     strcat(command, "ls ");
     int index = 1;
     while(args[index]){strcat(command, args[index]);strcat(command, " "); index++;}
-
     strcat(command, " --color");
     execCommandSync(command, config);
   } else if(strcmp(args[0], "hanoi") == 0 || strcmp(args[0], "/bin/hanoi") == 0){
-    initHanoiGame(config->lang);
-  } else {
-    printf("%s\n", str);
+    initHanoiGame(config);
+  } else if(strcmp(args[0], "setConfig") == 0 || strcmp(args[0], "/bin/setConfig") == 0){
+    execCommandSync("/bin/nano /etc/exsh/profile", config);
+  } else if(strcmp(args[0], "reboot") == 0 || strcmp(args[0], "/bin/reboot") == 0){
+    execCommandSync("clear", config);
+    char *argsList[] = {"/bin/exsh", NULL};
+    execvp(argsList[0], argsList);
+  } else if(strcmp(args[0], "clear") == 0 || strcmp(args[0], "/bin/clear") == 0){
+    execCommandSync("/usr/bin/clear", config);
+  }else {
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
