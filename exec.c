@@ -9,6 +9,7 @@
 #include "hanoi.h"
 #include "color.h"
 #include "language.h"
+#include "wls.h"
 //Fonction executant un programme suivant une commande
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
@@ -42,6 +43,16 @@ int execCommand(char *str, Config *config){
     exit(0);
   } else if(strcmp(args[0],"history") == 0 || strcmp(args[0], "/bin/history") == 0){
     seeLog(config);
+  } else if(strcmp(args[0],"wls") == 0 || strcmp(args[0], "/bin/wls") == 0){
+    if(args[1] != NULL && args[2] == NULL && strcmp(args[1],"-r") != 0){
+      wls(args[1],WLS_NONE);
+    } else if(args[1] != NULL && args[2] != NULL && strcmp(args[2],"-r") == 0){
+      wls(args[1],WLS_NORDER);
+    } else if(args[1] != NULL && strcmp(args[1],"-r") == 0){
+      wls(".",WLS_NORDER);
+    } else {
+      wls(".",WLS_NONE);
+    }
   } else if(strcmp(args[0], "help") == 0 || strcmp(args[0], "/bin/help") == 0){
     char command[255] = {"/usr/bin/man "};
     if(args[1] != NULL) strcat(command, args[1]);
