@@ -12,24 +12,24 @@ void moveIndex(char config[], int start, int end);
 
 //Fonction permettant de charger des variables à partir d'un dossier
 Config *loadConfig(){
-  //initialie et ouvre le fichier en lecture seul
+  //initialise et ouvre le fichier en lecture seul
   FILE *fileConfig;
   fileConfig = fopen(PATH_PROFILE, "r");
-  //Initiale la structure
+  //Initialise la structure
   Config *config = malloc(sizeof(Config));
 
   //Si le fileConfig n'existe pas alors il l'écrit
   if(fileConfig == NULL){
-    //On insere des valeurs par défaut
+    //On insère des valeurs par défaut
     config->mode = 0;
     config->lang = NULL;
     strcpy(config->locale, "fr");
     strcpy(config->prompt, "exsh");
 
   } else {
-    //Initiale un tableau char comportant la ligne en cours de lecture.
+    //Initialise un tableau char comportant la ligne en cours de lecture.
     char lineConfig[LINE_CHARACTER_MAX];
-    //Récupére chaque ligne du fileConfig
+    //Récupère chaque ligne du fileConfig
     while(fgets(lineConfig, LINE_CHARACTER_MAX, fileConfig)){
       //Permet de garder en mémoire le mot clef de la config
       char *keyword = separationChain(lineConfig, '=');
@@ -44,7 +44,7 @@ Config *loadConfig(){
       }
       //si c'est égale à prompt
       else if(strcmp(keyword, "prompt") == 0){
-        //Cope le reste de la lineConfig dans la config de prompt
+        //Copie le reste de la lineConfig dans la config de prompt
         strcpy(config->prompt, lineConfig);
       }
     }
@@ -56,14 +56,14 @@ Config *loadConfig(){
   loadHistory(config);
   //Ferme le fichier correctement
   fclose(fileConfig);
-  //retourne la structure config initialisé
+  //retourne la structure config initialisée
   return config;
 }
 //fonction pour séparer une chaine de caractère à partir d'un char de séparation
 char *separationChain(char config[], char separation){
-  //initiale les variables des boucles for => Pour certain c cela ne marche pas les déclarations dans les boucles for
+  //initialise les variables des boucles for => Pour certain c cela ne marche pas les déclarations dans les boucles for
   int a, b;
-  //boucle for qui parcour le tableau config[]
+  //boucle for qui parcours le tableau config[]
   for (a = 0; a < LINE_CHARACTER_MAX && (config[a] != '\0' || config[a] != '\n'); a++) {
     //Si le caractère est égale au caractère
     if(config[a] == separation){
@@ -85,7 +85,7 @@ char *separationChain(char config[], char separation){
 //Fonction permettant de déplacer une chaine de caractère dans un tableau
 void moveIndex(char config[], int start, int end){
   int a;
-  //Boucle for qui parcour le tableau config[]
+  //Boucle for qui parcours le tableau config[]
   for (a = 0; a < end && config[a] != '\0'; a++) {
     //Remplace l'index de config[a] par l'index start+a
     config[a] = config[start+a];
