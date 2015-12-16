@@ -9,7 +9,7 @@ void usage(char **av)
         printf("Usage: %s [FILES] ...\n", av[0]);
 }
 
-int main (int ac, char **av)
+int principal (int ac, char **av)
 {
         int i, fd;
         ssize_t byte_lu;

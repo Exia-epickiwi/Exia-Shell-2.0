@@ -4,6 +4,7 @@ error.loadCategories=Unable to load categories
 error.programError=Unable to load programs
 error.assistant.unknownChoice=Unable to determine your choice
 error.assistant.outChoice=No action corresponds to your choice
+error.userNull=No users in this system
 assistant.indexPrompt=What do you want to do ?
 assistant.back=Return
 assistant.promptChoice=Your choice

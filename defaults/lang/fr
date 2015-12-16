@@ -4,6 +4,7 @@ error.loadCategories=Impossible de charger les categories
 error.programError=Impossible de demarrer le programme
 error.assistant.unknownChoice=Impossible de determiner votre choix
 error.assistant.outChoice=Aucune action ne correcpond a votre choix
+error.userNull=Aucun utilisateur est dans ce système
 assistant.indexPrompt=Que souhaitez vous faire ?
 assistant.back=Retour
 assistant.promptChoice=Votre choix

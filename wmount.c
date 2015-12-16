@@ -3,7 +3,7 @@
 #include <string.h>
 #include <sys/mount.h>
 
-int main()
+int bite()
 {
    const char* src  = "none";
    const char* target = "/var/tmp"; /* /var/tmp = stockage de fichiers temporaires */

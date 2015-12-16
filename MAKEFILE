@@ -1,5 +1,2 @@
 all:
-	exsh
-
-exsh:
 	clear && gcc *.c -o exsh && sudo cp ./exsh /bin/exsh
