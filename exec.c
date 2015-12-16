@@ -3,12 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <signal.h>
 #include "cd.h"
 #include "exec.h"
 #include "config.h"
 #include "hanoi.h"
 #include "color.h"
 #include "language.h"
+#include "listUser.h"
+#include "wpwd.h"
 //Fonction executant un programme suivant une commande
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
@@ -56,14 +60,22 @@ int execCommand(char *str, Config *config){
   } else if(strcmp(args[0], "hanoi") == 0 || strcmp(args[0], "/bin/hanoi") == 0){
     initHanoiGame(config);
   } else if(strcmp(args[0], "setConfig") == 0 || strcmp(args[0], "/bin/setConfig") == 0){
-    execCommandSync("/bin/nano /etc/exsh/profile", config);
+    execCommandSync("sudo /bin/nano /etc/exsh/profile", config);
   } else if(strcmp(args[0], "reboot") == 0 || strcmp(args[0], "/bin/reboot") == 0){
     execCommandSync("clear", config);
     char *argsList[] = {"/bin/exsh", NULL};
     execvp(argsList[0], argsList);
   } else if(strcmp(args[0], "clear") == 0 || strcmp(args[0], "/bin/clear") == 0){
     execCommandSync("/usr/bin/clear", config);
-  }else {
+  } else if(strcmp(args[0], "wkill") == 0 || strcmp(args[0], "/bin/wkill") == 0){
+    if(kill(atoi(args[1]), SIGQUIT) == -1){
+      printf(COLOR_RED "%s" COLOR_RESET, toLocaleString(config->lang, "error.error"));
+    }
+  } else if(strcmp(args[0], "wpwd") == 0 || strcmp(args[0], "/bin/wpwd") == 0){
+    getPwd();
+  } else if(strcmp(args[0], "listUser") == 0 || strcmp(args[0], "/bin/listUser") == 0){
+    listUser();
+  } else {
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
