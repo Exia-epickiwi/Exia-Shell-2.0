@@ -74,11 +74,12 @@ int execCommand(char *str, Config *config){
   } else if(strcmp(args[0], "wpwd") == 0 || strcmp(args[0], "/bin/wpwd") == 0){
     getPwd();
   } else if(strcmp(args[0], "listUser") == 0 || strcmp(args[0], "/bin/listUser") == 0){
-    listUser();
+    listUser(config);
   } else {
     int pid = fork();
     if(pid == 0){
       if(execvp(args[0],args) == -1){
+
         printf(COLOR_RED "%s" COLOR_RESET " %s\n", toLocaleString(config->lang, "error.error"), toLocaleString(config->lang, "error.programError"));
         exit(EXIT_FAILURE);
       }

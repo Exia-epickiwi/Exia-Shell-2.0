@@ -1,6 +1,6 @@
 #ifndef _LISTUSERHEADER_
 #define _LISTUSERHEADER_
-
-  void listUser();
+  #include "config.h"
+  void listUser(Config *config);
 
 #endif
