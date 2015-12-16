@@ -1,10 +1,4 @@
- _____  __ __  _____  _____
-<<<<<<< HEAD
-|   __||  |  ||   __||  |  |             A shell from
-|   __||-   -||__   ||     |            Baptiste Saclier,
-|_____||__|__||_____||__|__|     Nicolas Mazard and Franz Alliod
-=======
-|   __||  |  ||   __||  |  |      Command interpreter by
-|   __||-   -||__   ||     |        Baptiste Saclier, Nicolas Mazard
-|_____||__|__||_____||__|__|        and Franz Alliod
->>>>>>> 62ea70c78429423275b8949b61bb5be457b0a824
+ ____ __  __  ____   _   _
+| __/ \ \/ / / __/  | |_| |           A shell from
+| __|  |  |  \__ \  |  _  |          Baptiste Saclier,
+|___\ /_/\_\ /___/  |_| |_|   Nicolas Mazard and Franz Alliod
