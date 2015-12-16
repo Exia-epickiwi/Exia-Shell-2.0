@@ -38,7 +38,7 @@ Vous trouvez ci-dessous un manuel d'utilisation détaillé pour chacun de ces mo
 
 ### Mode expert
 
-Le mode expert est destiné aux utilisateurs expérimentés ayant déjâ eu une experience sous un système LINUX. Dans ce mode, l'interpréteur de commandes affiche un invité de commandes personnalisable (par defaut `exsh>`) qui donne la permission a l'utilisateur d'entrer une commande.
+Le mode expert est destiné aux utilisateurs expérimentés ayant déjâ eu une experience sous un système LINUX. Dans ce mode, l'interpréteur de commandes affiche un invité de commandes personnalisable (par defaut `exsh>`) qui donne la permission à l'utilisateur d'entrer une commande.
 <br/>
 ![expertWelcome](img/expertWelcome.png)
 
