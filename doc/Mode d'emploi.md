@@ -66,15 +66,15 @@ Dans le mode naturel certaines règles sont a respecter. Tout les chemins vers l
 
 Les phrases implémentées sont limitées aux actions de base; ainsi les fonctionalités actuellement présentent sont les suivantes :
 
-|Fonctionalitée|Paramètre|
+|Fonctionalités|Paramètres|
 |---|---|
 |Lister le dossier actuel|Aucun|
-|Lister le repertoire actuel en ordre décroissant|Aucun|
-|Lister un repertoire donné|Un chemin|
-|Lister un repertoire donné en ordre décroissant|Un chemin|
-|Afficher le repertoire actuel|Aucun|
-|Creer un fichier|Un chemin|
-|Creer un dossier|Un chemin|
+|Lister le répertoire actuel en ordre décroissant|Aucun|
+|Lister un répertoire donné|Un chemin|
+|Lister un répertoire donné en ordre décroissant|Un chemin|
+|Afficher le répertoire actuel|Aucun|
+|Créer un fichier|Un chemin|
+|Créer un dossier|Un chemin|
 |Editer un fichier|Un chemin|
 |Supprimer un fichier|Un chemin|
 |Supprimer un dossier|Un chemin|
@@ -97,9 +97,9 @@ Au démarrage du shell un message de bienvenue est affiché a l'utilisateur. Ce 
 
 ### Configuration
 
-Le fichier de configuration principal de EXSH est le fichier `/etc/exsh/profile`. Ce fichier contient simplement 3 lignes : *Mode*,*Language* et *Prompt*.
+Le fichier de configuration principal de EXSH est le fichier `/etc/exsh/profile`.Ce fichier contient simplement 3 lignes : *Mode*,*Language* et *Prompt*.
 
-**Mode** est le mode utilisé pour toute connexion d'utilisateur. Ce paramètre peut prendre 3 valeurs différentes.
+**Mode** est le mode utilisé pour toute connexion d'utilisateur.Ce paramètre peut prendre 3 valeurs différentes.
 
 |Valeur|Mode|
 |---|---|
