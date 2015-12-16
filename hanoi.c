@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "language.h"
+#include "config.h"
 #include "color.h"
 #include "exec.h"
 #include "hanoi.h"
@@ -16,24 +17,24 @@ void printDisc(int size,int maxSize);
 HanoiDisc* getHanoiDisc(HanoiTower *tower,int index);
 HanoiDisc* removeHanoiDisc(HanoiTower *tower);
 int moveHanoiDisc(HanoiTower *from, HanoiTower *to);
-void startGame(Language *lang,int discNumber);
-void saveScore(char *name, int score, int level);
+void startGame(Config *config,int discNumber);
+void saveScore(char *name, int scoreTime, int level, int score);
 
-void initHanoiGame(Language *lang){
-  printf("%s\n",toLocaleString(lang,"hanoi.name"));
-  printf("%s\n",toLocaleString(lang,"hanoi.rules"));
+void initHanoiGame(Config *config){
+  printf("%s\n",toLocaleString(config->lang,"hanoi.name"));
+  printf("%s\n",toLocaleString(config->lang,"hanoi.rules"));
   char enterDiff[5];
   int discNumber = 0;
   int maxDisc = 10;
   do{
-    printf("%s (3-%d) : ",toLocaleString(lang,"hanoi.askDisc"),maxDisc);
+    printf("%s (3-%d) : ",toLocaleString(config->lang,"hanoi.askDisc"),maxDisc);
     getKeyboard(enterDiff,5);
     discNumber = atoi(enterDiff);
   }while(discNumber<3 || discNumber>maxDisc);
-  startGame(lang,discNumber);
+  startGame(config,discNumber);
 }
 
-void startGame(Language *lang,int discNumber){
+void startGame(Config *config, int discNumber){
   //Creation des trois tours avec le nombre requis de disques
   HanoiTower* towers[TOWER_NUMBER];
   int i;
@@ -44,14 +45,17 @@ void startGame(Language *lang,int discNumber){
   fillHanoiTower(towers[0],1,discNumber);
   //Affichage
   printHanoiTowers(towers,TOWER_NUMBER,discNumber);
-  printf("\n%s\n",toLocaleString(lang,"hanoi.moveInstructions"));
+  printf("\n%s\n",toLocaleString(config->lang,"hanoi.moveInstructions"));
+  //Creation de la variable pour le score
+  int score = 0;
   //Demarrage du chrono
   time_t start = time(NULL);
   while(towers[TOWER_NUMBER-1]->height < discNumber){
     printf("\n\n");
-    printf("%s : ",toLocaleString(lang,"hanoi.move"));
+    printf("%s : ",toLocaleString(config->lang,"hanoi.move"));
     char move[5];
     getKeyboard(move,5);
+    score ++;
     printf("\n");
     int moved = 0;
     int fromId = (move[0] - '0')-1;
@@ -59,17 +63,17 @@ void startGame(Language *lang,int discNumber){
     if((fromId >= 0 && fromId < TOWER_NUMBER) && (toId >= 0 && toId < TOWER_NUMBER))
       moved = moveHanoiDisc(towers[fromId],towers[toId]);
     printHanoiTowers(towers,TOWER_NUMBER,discNumber);
-    printf("\n%s %d %s %d\n",toLocaleString(lang,"hanoi.moveFrom"),fromId+1,toLocaleString(lang,"hanoi.moveTo"),toId+1);
+    printf("\n%s %d %s %d\n",toLocaleString(config->lang,"hanoi.moveFrom"),fromId+1,toLocaleString(config->lang,"hanoi.moveTo"),toId+1);
     if(moved == 0){
-      printf(COLOR_RED "%s\n" COLOR_RESET,toLocaleString(lang,"hanoi.moveError"));
+      printf(COLOR_RED "%s\n" COLOR_RESET,toLocaleString(config->lang,"hanoi.moveError"));
     } else {
-      printf(COLOR_GREEN "%s\n" COLOR_RESET,toLocaleString(lang,"hanoi.moveSuccess"));
+      printf(COLOR_GREEN "%s\n" COLOR_RESET,toLocaleString(config->lang,"hanoi.moveSuccess"));
     }
   }
-  printf("\n\n%s\n",toLocaleString(lang,"hanoi.gameFinished"));
-  int score = time(NULL)-start;
-  printf("%s %ds\n",toLocaleString(lang,"hanoi.gameDuration"),score);
-  saveScore("exsh", score, discNumber);
+  printf("\n\n%s\n",toLocaleString(config->lang,"hanoi.gameFinished"));
+  int scoreTime = time(NULL)-start;
+  printf("%s %ds, %s %d\n",toLocaleString(config->lang,"hanoi.gameDuration"),scoreTime, toLocaleString(config->lang, "hanoi.score"), score);
+  saveScore(config->prompt, scoreTime, discNumber, score);
 }
 
 HanoiTower* createHanoiTower(){
@@ -216,10 +220,10 @@ void printDisc(int size,int maxSize){
     printf(COLOR_RESET);
 }
 
-void saveScore(char *name, int score, int level){
+void saveScore(char *name, int scoreTime, int level, int score){
   FILE *file = fopen(PATH_SCORE, "r+");
   char scor[50];
-  sprintf(scor, "[%d] %d - %s\n", level, score, name);
+  sprintf(scor, "[%d] %d-%d - %s\n", level, scoreTime, score, name);
   if(file == NULL){
     file = fopen(PATH_SCORE, "w");
     fputs(scor, file);

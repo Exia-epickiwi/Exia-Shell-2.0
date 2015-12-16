@@ -3,7 +3,7 @@
 #define PATH_SCORE "/tmp/score_hanoi_exsh"
 typedef struct HanoiTower HanoiTower;
 typedef struct HanoiDisc HanoiDisc;
-
+#include "config.h"
 struct HanoiTower{
   HanoiDisc *top;
   int height;
@@ -15,6 +15,6 @@ struct HanoiDisc{
   int size;
 };
 
-void initHanoiGame(Language *lang);
+void initHanoiGame(Config *config);
 
 #endif

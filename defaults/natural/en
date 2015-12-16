@@ -1,0 +1,34 @@
+list,folder,current,decreasing|/bin/ls -r --color
+list,directory,current,decreasing|/bin/ls -r --color
+list,directory,decreasing|/bin/ls % -r --color|directory
+list,folder,decreasing|/bin/ls % -r --color|directory
+list,decreasing|/bin/ls % -r --color|directory
+list,directory,current|/bin/ls --color
+list,folder,current|/bin/ls --color
+list,directory|/bin/ls % --color|directory
+list,folder|/bin/ls % --color|directory
+list|/bin/ls % --color|directory
+where,am,i|/bin/pwd
+directory,current|/bin/pwd
+make,file|/bin/touch %|directory
+make,folder|/bin/mkdir %|directory
+edit,file|/bin/nano %|directory
+modify,file|/bin/nano %|directory
+delete,file|/bin/rm %|directory
+delete,folder|/bin/rmdir %|directory
+display,file|/bin/more %|directory
+read,file|/bin/more %|directory
+change,password|/bin/passwd
+super,administrator|/bin/su
+super,user|/bin/su
+mode,core|/bin/su
+which,hour|/bin/date
+which,day|/bin/date
+which,date|/bin/date
+which,year|/bin/date
+list,process|/bin/ps
+kill,process|/bin/kill %|number
+remove,process|/bin/kill %|number
+execute,order|/bin/%|directory
+execute|%|directory
+imhotep|echo Exyptien.exe
