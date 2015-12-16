@@ -3,6 +3,9 @@
 #include <string.h>
 #include "motd.h"
 
+//Fonction affichant le message de bienvenue
+//Paramètres :
+//  locale : code de langue de l'utilisateur
 void printStartsInfos(char *locale){
   char path[] = PATH_MOTD;
   char *nameFile = strcat(path, locale);
