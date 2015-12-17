@@ -136,7 +136,7 @@ char *getColor(struct dirent *element){
 //Recupère le type de fichier d'un élément dirent
 //Paramètres :
 //  element : l'element dirent
-//Renvoie : le pid du process executé ou -1 si il y a eu une erreur
+//Renvoie : Le type de fichier
 int getType(struct dirent *element){
   switch(element->d_type){
     case DT_DIR:

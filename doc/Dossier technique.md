@@ -39,8 +39,9 @@ Les taches du projet on été divisés en plusieurs groupes puis chacun des memb
 |Configuration           |     |✗   |     |     |     |     |     |     |
 |Mode expert             |     |     |     |✗   |✗   |     |     |     |
 |Enregistrement logs     |     |     |     |     |✗   |✗   |     |     |
-|Easter Egg              |     |     |     |     |✗   |✗   |     |     |
+|Easter Egg              |     |     |     |     |✗   |    |     |     |
 |Ajustements/Debug       |     |     |     |     |     |✗   |✗   |     |
+|Preparations            |     |     |     |     |     |     |    |✗   |
 
 ### Baptiste Saclier
 
@@ -52,8 +53,9 @@ Les taches du projet on été divisés en plusieurs groupes puis chacun des memb
 |Mode expert             |     |     |✗   |     |     |     |     |     |
 |Mode assistant          |     |     |✗   |✗   |✗   |     |     |     |
 |Mode naturel            |     |     |     |     |✗   |✗   |     |     |
-|Easter Egg              |     |     |     |     |✗   |✗   |     |     |
-|Ajustements/Debug       |     |     |     |     |     |     |✗   |     |
+|Easter Egg              |     |     |     |✗   |✗   |     |     |     |
+|Ajustements/Debug       |     |     |     |     |     |✗   |✗   |     |
+|Preparations            |     |     |     |     |     |     |    |✗   |
 
 <div class="page-break"></div>
 
@@ -61,11 +63,4 @@ Les taches du projet on été divisés en plusieurs groupes puis chacun des memb
 
 |Tache                   |10/12|11/12|12/12|13/12|14/12|15/12|16/12|17/12|
 |------------------------|-----|-----|-----|-----|-----|-----|-----|-----|
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
-|                        |     |     |     |     |     |     |     |     |
+|Preparations            |     |     |     |     |     |     |     |✗   |
