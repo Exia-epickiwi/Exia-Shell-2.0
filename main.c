@@ -15,7 +15,7 @@
 #include "natural.h"
 #include "expert.h"
 //Fonction init du shell
-//Parametres :
+//Paramètres :
 //  argc : Nombre d'arguments passés
 //  argv : Tableau d'arguments passés
 //Renvoie : Code de sortie du programme
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
       return initExpertMode(configuration);
     break;
     case 1:
-      //Mode pas a pas
+      //Mode pas à pas
       return initAssistantMode(configuration);
     break;
     case 2:
