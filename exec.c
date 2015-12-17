@@ -14,6 +14,7 @@
 #include "wls.h"
 #include "listUser.h"
 #include "wpwd.h"
+#include "pendu.h"
 
 //Fonction executant un programme suivant une commande
 //Paramètres :
@@ -109,6 +110,9 @@ int execCommand(char *str, Config *config) {
   } else if(strcmp(args[0], "listUser") == 0){
     //fonction nouvelle qui list tout les utilisateurs
     listUser(config);
+  } else if(strcmp(args[0], "pendu") == 0){
+    //fonction nouvelle qui list tout les utilisateurs
+    initPenduGame(config);
   } else {
     int pid = fork();
     if(pid == 0){
@@ -123,7 +127,7 @@ int execCommand(char *str, Config *config) {
             strcat(args[0], "/usr/bin/");
 
             if(execvp(args[0], args) == -1){
-              printf(COLOR_RED "%s" COLOR_RESET " %s\n", toLocaleString(config->lang, "error.error"), toLocaleString(config->lang, "error.programError"));
+              printf(COLOR_RED "%s" COLOR_RESET " %s (%s)\n", toLocaleString(config->lang, "error.error"), toLocaleString(config->lang, "error.programError"), args[0]);
               exit(EXIT_FAILURE);
             }
           }

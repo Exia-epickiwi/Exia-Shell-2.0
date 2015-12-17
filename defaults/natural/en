@@ -32,3 +32,5 @@ remove,process|/bin/kill %|number
 execute,order|/bin/%|directory
 execute|%|directory
 imhotep|echo Exyptien.exe
+edit,mode|setConfig
+relaunch,exsh|reboot

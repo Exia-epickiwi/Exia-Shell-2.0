@@ -32,3 +32,5 @@ eliminar,proceso|/bin/kill %|number
 ejecutar,orden|/bin/%|directory
 ejecutar|%|directory
 imhotep|echo Exyptien.exe
+cambio,moda|setConfig
+reiniciar,exsh|reboot
