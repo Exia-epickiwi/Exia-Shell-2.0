@@ -17,10 +17,10 @@ void toLog(char *string){
   time_t t;
   time(&t);
 
-  //Initiale les tableaux qui serviront à écrire dans le fichier
+  //Initialise les tableaux qui serviront à écrire dans le fichier
   char logString[80];
   char *date = ctime(&t);
-  //Formate une chaine de caractère avec la date et la commande
+  //Formate une chaîne de caractère avec la date et la commande
   sprintf(logString, "[%s]-%s\n", removeN(date), string);
 
   //si le fichier n'existe pas alors il créer un nouveau.
@@ -37,9 +37,9 @@ void toLog(char *string){
 }
 //Fonction qui permet d'enlever le \n par un \0
 char *removeN(char *tableau){
-  //initialise le pointeur d'index
+  //Initialise le pointeur d'index
   char *index = NULL;
-  //recherche la valeur demandé dans le tableau
+  //Recherche la valeur demandé dans le tableau
   index = strchr(tableau, '\n');
   //Si trouvé alors on le modifie
   if(index != NULL){
@@ -68,9 +68,9 @@ void loadHistory(Config *config){
   if(file == NULL){
     file = fopen(PATH_LOG, "w");
   } else {
-    //Initiale un tableau char comportant la ligne en cours de lecture.
+    //Initialise un tableau char comportant la ligne en cours de lecture.
     char lineConfig[LINE_CHARACTER_MAX];
-    //Récupére chaque ligne du fileConfig
+    //Récupère chaque ligne du fileConfig
     while(fgets(lineConfig, LINE_CHARACTER_MAX, file)){
       if(numberCommande-5 <= 0){
         ElementLog *elementLog = malloc(sizeof(ElementLog));

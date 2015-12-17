@@ -7,14 +7,14 @@
 //Paramètres :
 //  locale : code de langue de l'utilisateur
 void printStartsInfos(char *locale){
-  //récupére la constante du PATH_MOTD
+  //récupère la constante du PATH_MOTD
   char path[] = PATH_MOTD;
-  //on addition les 2 chaines de caractéres
+  //on additione les 2 chaînes de caractères
   char *nameFile = strcat(path, locale);
   //Ouvre le fichier
   FILE *file = fopen(nameFile, "r");
   char line[256];
-  //parcour tout les lignes du fichier
+  //parcourt toutes les lignes du fichier
   while(fgets(line, 256, file)){
     //affiches les lignes
     printf("%s", line);
