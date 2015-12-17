@@ -103,6 +103,7 @@ Au niveau du groupe le nombre était réduit et Franz n'était pas espéré pour
 Le programme démarre par la fonction main récupérant la configuration et la langue dans une structure unique. Cette fonction appelle ensuite la fonction d'initialisation du mode demandé. Le mode attend alors l'entrée de l'utilisateur puis convertit celle-ci en un équivalent exécutable (commande) qui est ensuite exécuté par le module exec. Les commandes de base sont exécutées depuis le dossier BIN sauf certaines commandes que nous avons ajoutées comme (wls,listUser,wcat,hanoi,etc.).
 
 <div class="page-break"></div>
+
 # Mode d'emploi
 
 ## Introduction
