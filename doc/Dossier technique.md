@@ -84,7 +84,7 @@ Ce projet m'a apporté beaucoup de connaissances comme l'ouverture de fichier, c
 Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langage oui). Cela m'a permis de créer de bonne connaissance en langage C.
 Le groupe a été modifié au dernier moment et malheuresement, nous avons fini les grosses fonctionnalités en 3-4 jours dû à notre niveau en langage C. Ce qui n'a pas été une vrai gestion de groupe (car on était au début seulement 2 membres).
 
-<u>Description de la réalisation effective du projet :</u>
+## Description de la réalisation effective du projet :
 I] Main
 Chargement de la configuration et de la langue
 A) Mode expert
