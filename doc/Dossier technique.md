@@ -79,3 +79,9 @@ J'ai été malade et ai commencé le projet seulement à partir du 14/12, malgr�
 ### Baptiste Saclier
 
 Après les prosits consacrés a la programmation en C le projet et l'aboutissement de cette fin d'année 2015. Ce projet a été une occasion de mettre en pratique les techniques de mise e place d'un programme de manière structurée pour permettre son évolution et sa bonne compréhension par les tiers. Mais aussi de mettre en place un travail de groupe et de diviser la charge pour gagner du temps. Je n'avais jamais travaillé en équipe et cette première expérience fut très probante. L'organisation était optimale grâce a l'utilisation de git et de trello permettant de partager le code et de corriger des bugs plus simplement. En bref, j'ai bien aimé ce projet, car cela m'a permis de découvrir beaucoup d'aspects des projets en équipe. Malgré ces points positifs, le sujet restait assez vague par rapport aux commandes à utiliser ou au travail à effectuer. De plus le groupe etait peut etre surqualifié et les tuteurs trop peu présents et nous avons du aider d'autres groupes.
+
+### Nicolas Mazard
+
+Ce projet m'a apporté beaucoup de connaissances comme l'ouverture de fichier, création entière d'une console en mode expert. Ce projet aussi m'a permis d'apprendre à utiliser des logiciels de gestion de projet comme git pour la programmation en équipe et trello pour la gestion des tâches.
+Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langage oui). Cela m'a permis de créer de bonne connaissance en langage C.
+Le groupe a été modifié au dernier moment et malheuresement, nous avons fini les grosses fonctionnalités en 3-4 jours dû à notre niveau en langage C. Ce qui n'a pas été une vrai gestion de groupe (car on était au début seulement 2 membres).
