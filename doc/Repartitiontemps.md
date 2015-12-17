@@ -8,20 +8,21 @@
 * présentation de l'organisation globale du projet shell 
   * description
   * présentation globale
-
-Sommaire et rappel des tâches
+* Sommaire
+* rappel des tâches
 
 ### Nicolas Mazard :
 
 * mode expert
 * configuration
 * l'enregistrement des logs
+*  Commandes recodées
 
 ### Baptiste Saclier : 
 
 * Présentation du mode assistant
-*naturel
-* du système multilangue 
+* naturel
+* système multilangue 
 * l'Easter-egg
 
 
