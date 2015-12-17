@@ -83,5 +83,9 @@ Après les prosits consacrés a la programmation en C le projet et l'aboutisseme
 ### Nicolas Mazard
 
 Ce projet m'a apporté beaucoup de connaissances comme l'ouverture de fichier, création entière d'une console en mode expert. Ce projet aussi m'a permis d'apprendre à utiliser des logiciels de gestion de projet comme git pour la programmation en équipe et trello pour la gestion des tâches.
-Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langage oui). Cela m'a permis de créer de bonne connaissance en langage C.
-Le groupe a été modifié au dernier moment et malheuresement, nous avons fini les grosses fonctionnalités en 3-4 jours dû à notre niveau en langage C. Ce qui n'a pas été une vrai gestion de groupe (car on était au début seulement 2 membres).
+Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langages oui). Cela m'a permis de créer de bonnes connaissances en langage C.
+Le groupe a été modifié au dernier moment et malheureusement, nous avons fini les grosses fonctionnalités en 3-4 jours dus à notre niveau en langage C. Ce qui n'a pas été une vraie gestion de groupe (car on était au début seulement 2 membres).
+
+## Bilan de groupe
+
+Au niveau du groupe le nombre était réduit et Franz n'était pas espéré pour ce projet Nicolas et Baptiste on donc géré le projet pour deux personnes. Ces deux personnes ont (malheureusement) terminé la majorité des fonctionnalités dès lundi 14 décembre et il ne restait seulement que quelques bugs à corriger et quelques commandes de haut niveau à développer. Malgré cela le groupe a permis la formation d'un logiciel abouti en très peu de temps et d'organiser le code pour une éventuelle évolution. Le groupe a utilisé GIT ainsi que TRELLO permettant d'organiser les opérations a effectuer et ainsi de permettre un gain de temps et de ressources intellectuelles.
