@@ -66,6 +66,12 @@ Les tâches du projet on été divisées en plusieurs groupes puis chacun des me
 |Traductions-corrections |     |     |     |     |  ✗  |  ✗ |     |     |
 |Preparations            |     |     |     |     |     |     |     | ✗   |
 |Codage commandes        |     |     |     |     |     |     | ✗   |     |
-Bilan personnel : 
+Bilan personnel :
 Lors de ce projet, j'ai appris comment fonctionnait un interpréteur de commande et comment l'organisé en C.
 J'ai été malade et ai commencé le projet seulement à partir du 14/12, malgré mon retard, j'ai contribué au projet dans sa forme en traduisant les commandes du mode naturel, par des corrections d'orthographe et en codant certaines commandes. Par ailleurs, j'ai essayé de rattraper mon retard personnel en essayant de refaire certains modes. ( indépendament du projet )
+
+### Nicolas Mazard
+
+Ce projet m'a apporté beaucoup de connaissances comme l'ouverture de fichier, création entière d'une console en mode expert. Ce projet aussi m'a permis d'apprendre à utiliser des logiciels de gestion de projet comme git pour la programmation en équipe et trello pour la gestion des tâches.
+Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langage oui). Cela m'a permis de créer de bonne connaissance en langage C.
+Le groupe a été modifié au dernier moment et malheuresement, nous avons fini les grosses fonctionnalités en 3-4 jours dû à notre niveau en langage C. Ce qui n'a pas été une vrai gestion de groupe (car on était au début seulement 2 membres).
