@@ -4,7 +4,7 @@ Répartition temps de parole : 20/3=6min20sec
 
 Introduction, présentation de l'organisation globale du projet shell ( description et présentation globale sur Prezi )
 
-Sommaire et rappel des tâches
+( présentation de certaines commandes ? à la fin si le temps le permet... )
 
 2) Nicolas Mazard :
 
