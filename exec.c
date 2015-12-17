@@ -95,7 +95,7 @@ int execCommand(char *str, Config *config) {
     //Si la commande est égale à setConfig on lance nano pour modifier le profile du fichier. Seul le super utilisateur peut modifier ce fichier
     execCommandSync("sudo /bin/nano /etc/exsh/profile", config);
 
-  } else if(strcmp(args[0], "reboot") == 0){
+  } else if(strcmp(args[0], "reload") == 0){
     //lance la commande clear
     execCommandSync("clear", config);
     char *argsList[] = {"/bin/exsh", NULL};
