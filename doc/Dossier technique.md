@@ -66,9 +66,17 @@ Les tâches du projet on été divisées en plusieurs groupes puis chacun des me
 |Traductions-corrections |     |     |     |     |  ✗  |  ✗ |     |     |
 |Preparations            |     |     |     |     |     |     |     | ✗   |
 |Codage commandes        |     |     |     |     |     |     | ✗   |     |
-Bilan personnel :
+
+## Bilans personnels
+
+### Franz Alliod
+
 Lors de ce projet, j'ai appris comment fonctionnait un interpréteur de commande et comment l'organisé en C.
 J'ai été malade et ai commencé le projet seulement à partir du 14/12, malgré mon retard, j'ai contribué au projet dans sa forme en traduisant les commandes du mode naturel, par des corrections d'orthographe et en codant certaines commandes. Par ailleurs, j'ai essayé de rattraper mon retard personnel en essayant de refaire certains modes. ( indépendament du projet )
+
+### Baptiste Saclier
+
+Après les prosits consacrés a la programmation en C le projet et l'aboutissement de cette fin d'année 2015. Ce projet a été une occasion de mettre en pratique les techniques de mise e place d'un programme de manière structurée pour permettre son évolution et sa bonne compréhension par les tiers. Mais aussi de mettre en place un travail de groupe et de diviser la charge pour gagner du temps. Je n'avais jamais travaillé en équipe et cette première expérience fut très probante. L'organisation était optimale grâce a l'utilisation de git et de trello permettant de partager le code et de corriger des bugs plus simplement. En bref, j'ai bien aimé ce projet, car cela m'a permis de découvrir beaucoup d'aspects des projets en équipe. Malgré ces points positifs, le sujet restait assez vague par rapport aux commandes à utiliser ou au travail à effectuer. De plus le groupe etait peut etre surqualifié et les tuteurs trop peu présents et nous avons du aider d'autres groupes.
 
 ### Nicolas Mazard
 
