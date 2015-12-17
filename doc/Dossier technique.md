@@ -90,6 +90,7 @@ I] Main
 Chargement de la configuration et de la langue
 
 A) Mode expert
+
 1) Enregistrement des commandes (log)
 2) Exécution des commandes (exec)
 
