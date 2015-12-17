@@ -24,8 +24,8 @@
     ElementLog *first;
   };
   struct ElementLog {
-    ElementLog *next;
     char command[COMMAND_LENGTH];
+      ElementLog *next;
   };
 
   Config *loadConfig();

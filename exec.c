@@ -116,7 +116,7 @@ int execCommand(char *str, Config *config) {
     while(args[sizeArgs] != NULL){
       sizeArgs++;
     }
-    cat(size, args);
+    cat(sizeArgs, args);
   } else if(strcmp(args[0], "wpwd") == 0){
     //fonction qui permet de montrer où l'utilisateur se trouve
     getPwd();

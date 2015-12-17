@@ -7,9 +7,6 @@
 //Nombre de caractère maximale
 #define LINE_CHARACTER_MAX 150
 
-void defile(HeadLog headLog);
-void emfile(HeadLog *headLog, ElementLog * elementLog);
-
 char *removeN(char *tableau);
 
 void toLog(char *string){
@@ -53,12 +50,21 @@ char *removeN(char *tableau){
 }
 
 void loadHistory(Config *config){
-  FILE *file = fopen(PATH_LOG, "r+");
+  int numberCommande = 0;
+  FILE *file = fopen(PATH_LOG, "r");
+    if(file != NULL){
+      char ligne[256];
+      while(fgets(ligne, 256, file)){
+        numberCommande++;
+      }
+    }
+  fclose(file);
+
+  file = fopen(PATH_LOG, "r+");
   HeadLog *headLog = malloc(sizeof(HeadLog));
   headLog->first = NULL;
   headLog->length = 0;
   config->history = headLog;
-
   if(file == NULL){
     file = fopen(PATH_LOG, "w");
   } else {
@@ -66,35 +72,16 @@ void loadHistory(Config *config){
     char lineConfig[LINE_CHARACTER_MAX];
     //Récupére chaque ligne du fileConfig
     while(fgets(lineConfig, LINE_CHARACTER_MAX, file)){
-      ElementLog *elementLog = malloc(sizeof(ElementLog));
-      strtok(lineConfig, "-");
-      strcpy(elementLog->command, strtok(NULL, "\0"));
-        emfile(headLog, elementLog);
-      config->history->length++;
-      if(config->history->length > 5) {
-        defile(headLog);
-        emfile(headLog);
+      if(numberCommande-5 <= 0){
+        ElementLog *elementLog = malloc(sizeof(ElementLog));
+        strtok(lineConfig, "-");
+        strcpy(elementLog->command, strtok(NULL, "\0"));
+        elementLog->next = config->history->first;
+        config->history->first = elementLog;
+      } else {
+        numberCommande--;
       }
     }
-  }
-}
-void emfile(HeadLog *headLog, ElementLog * elementLog){
-  if(headLog->first != NULL){
-    ElementLog *actual = HeadLog->first;
-    while(actual != NULL){
-      actual = actual->next;
-    }
-    actual->next = elementLog;
-  } else {
-    headLog->first = elementLog;
-  }
-}
-
-void defile(HeadLog headLog){
-  if(headLog->first != NULL){
-    ElementLog *elementLog = headLog->first;
-    headLog->first = elementLog->next;
-    free(elementLog);
   }
 }
 
