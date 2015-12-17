@@ -1,0 +1,22 @@
+Répartition temps de parole : 20/3=6min20sec
+
+1) Franz Alliod :
+
+Introduction, présentation de l'organisation globale du projet shell ( description et présentation globale sur Prezi )
+
+Sommaire et rappel des tâches
+
+2) Nicolas Mazard :
+
+Présentation du chargement à l'ouverture, du mode expert, de la configuration, l'enregistrement des logs
+
+
+3) Baptiste Saclier : 
+
+Présentation du mode assistant + naturel, du système multilangue et de l'Easter-egg
+
+
+
+
+
+
