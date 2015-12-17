@@ -86,20 +86,25 @@ Le groupe a été modifié au dernier moment et malheuresement, nous avons fini 
 
 ## Description de la réalisation effective du projet :
 I] Main
+
 Chargement de la configuration et de la langue
+
 A) Mode expert
 1) Enregistrement des commandes (log)
 2) Exécution des commandes (exec)
 
 B) Mode assistant
+
 1) Enregistrement des commandes (log)
 2) Exécution des commandes (exec)
 
 C) Mode naturel
+
 1) Enregistrement des commandes (log)
 2) Exécution des commandes (exec)
 
 II] Exécution des commandes (exec)
+
 1) Commande de cd (recodé de cd)
 2) Exécution de jeu: easter-eggs
 3) Commande wls (recodé de ls)
