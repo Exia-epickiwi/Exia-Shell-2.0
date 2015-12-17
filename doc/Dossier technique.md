@@ -68,4 +68,4 @@ Les tâches du projet on été divisées en plusieurs groupes puis chacun des me
 |Codage commandes        |     |     |     |     |     |     | ✗   |     |
 Bilan personnel : 
 Lors de ce projet, j'ai appris comment fonctionnait un interpréteur de commande et comment l'organisé en C.
-J'ai été malade et ai commencé le projet seulement à partir du 14/12, malgré mon retard, j'ai contribué au projet dans sa forme en traduisant le mode naturel, par des corrections d'orthographe et en codant certaines commandes. Par ailleurs, j'ai essayé de rattraper mon retard personnel en essayant de refaire certains modes. ( indépendament du projet )
+J'ai été malade et ai commencé le projet seulement à partir du 14/12, malgré mon retard, j'ai contribué au projet dans sa forme en traduisant les commandes du mode naturel, par des corrections d'orthographe et en codant certaines commandes. Par ailleurs, j'ai essayé de rattraper mon retard personnel en essayant de refaire certains modes. ( indépendament du projet )
