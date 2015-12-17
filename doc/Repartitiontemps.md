@@ -4,7 +4,10 @@
 
 ### Franz Alliod :
 
-Introduction, présentation de l'organisation globale du projet shell ( description et présentation globale sur Prezi )
+* Introduction
+* présentation de l'organisation globale du projet shell 
+  * description
+  * présentation globale
 
 Sommaire et rappel des tâches
 
