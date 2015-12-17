@@ -1,4 +1,4 @@
-## Exia Shell 2.0
+## Exia Shell
 # Dossier technique
 ### Projet de fin d'UE
 
@@ -66,6 +66,8 @@ Les tâches du projet on été divisées en plusieurs groupes puis chacun des me
 |Traductions-corrections |     |     |     |     |  ✗  |  ✗ |     |     |
 |Preparations            |     |     |     |     |     |     |     | ✗   |
 |Codage commandes        |     |     |     |     |     |     | ✗   |     |
+
+<div class="page-break"></div>
 
 ## Bilans personnels
 
