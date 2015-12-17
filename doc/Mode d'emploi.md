@@ -14,7 +14,7 @@ Merci d'avoir choisi Exia Shell 2.0 comme Shell pour votre ordinateur. Ce guide 
 
 1. Modes d'utilisation
     1. Mode expert
-    2. Mode Assistant
+    2. Mode assistant
     3. Mode naturel
 2. Administration
     1. Message de bienvenue
@@ -28,7 +28,7 @@ Merci d'avoir choisi Exia Shell 2.0 comme Shell pour votre ordinateur. Ce guide 
 
 Contrairement aux autres interpréteurs de commande *EXSH* a pour vocation de faciliter au mieux l'utilisation d'un Shell. Pour ce faire, il est composé de 3 modes permettant de l'utiliser sans connaissance des commandes. On dénombre actuellement 3 modes :
 
-**le mode expert** : Ce mode fonctionne comme un Shell classique. L'utilisateur entre les commandes du système et celui-ci donne un résultat. Ce mode est privilégié par les administrateurs et les personnes désirant un contrôle plus précis de ce qu'il se passe sur la machine.
+**Le mode expert** : Ce mode fonctionne comme un Shell classique. L'utilisateur entre les commandes du système et celui-ci donne un résultat. Ce mode est privilégié par les administrateurs et les personnes désirant un contrôle plus précis de ce qu'il se passe sur la machine.
 
 **Le mode assistant** : Ce mode présente une suite de catégories puis de sous catégories permettant de trier les commandes de base disponibles à l'utilisateur. Celui-ci peut alors naviguer dans des menus et voir un grand nombre de commandes disponibles sur la machine.
 
@@ -50,7 +50,7 @@ Malgré sa complexité le mode expert permet d'opérer de manière précise et l
 
 ### Mode assistant
 
-Le mode assistant se présente comme un arbre de commandes. Ces catégories munies d'une description permettent de rendre plus explicite l'exécution des commandes. Dans ce mode, aucune commande n'est vue par l'utilisateur, mais associé à des catégories. On se déplace dans cette architecture de menu à l'aide de chiffres. Les fonctions de base sont regroupées dans des catégories permettant de facilement trouver la fonctionnalité demandée. Le mode assistant se présente comme suit :
+Le mode assistant se présente comme un arbre de commandes. Ces catégories sont munient d'une description qui permet de rendre plus explicite l'exécution des commandes. Dans ce mode, aucune commande n'est vue par l'utilisateur, mais associé à des catégories. On se déplace dans cette architecture de menu à l'aide de chiffres. Les fonctions de base sont regroupées dans des catégories permettant de facilement trouver la fonctionnalité demandée. Le mode assistant se présente de la manière suivante :
 
 ![assistant](img/assistant.png)
 
@@ -80,7 +80,7 @@ Les phrases implémentées sont limitées aux actions de base; ainsi les fonctio
 |Supprimer un dossier|Un chemin|
 |Afficher un fichier|Un chemin|
 |Changer son mot de passe|Aucun|
-|Passer en Super utilisateur|Aucun|
+|Passer en super utilisateur|Aucun|
 |Demander l'heure, la date, le jour ou l'année|Aucun|
 |Lister les processus|Aucun|
 |Tuer un processus|Un PID|
@@ -89,7 +89,7 @@ Les phrases implémentées sont limitées aux actions de base; ainsi les fonctio
 
 ## Administration
 
-EXSH est un Shell pensé pour être modulable. Nos (futurs) ingénieurs ont pensé le code source pour que toutes les données ne demandant pas de programmation soit personnalisables par l'administrateur système a l'aide de fichiers de configuration stockés dans `/etc/exsh`.
+EXSH est un Shell pensé pour être modulable. Nos (futurs) ingénieurs ont pensé le code source pour que toutes les données ne demandant pas de programmation soient personnalisables par l'administrateur système a l'aide de fichiers de configuration stockés dans `/etc/exsh`.
 
 ### Message de bienvenue
 
@@ -115,7 +115,7 @@ Le fichier de configuration principal de EXSH est le fichier `/etc/exsh/profile`
 |en|Anglais|
 |es|Espagnol|
 
-**Prompt** ce paramètre prend pour valeur une chaine de caractères représentant le prompt personnalisé à afficher aux utilisateurs. Ce prompt sera affiché à tout utilisateur pour lui montrer qu'il peut interagir avec le programme. Voici un exemple de prompt `exsh>` :
+**Prompt** ce paramètre prend pour valeur une chaîne de caractères représentant le prompt personnalisé à afficher aux utilisateurs. Ce prompt sera affiché à tout utilisateur pour lui montrer qu'il peut intéragir avec le programme. Voici un exemple de prompt `exsh>` :
 
 ![promptEx](img/promptEx.png)
 
@@ -125,7 +125,7 @@ EXSH intègre un système multilangue permettant à un utilisateur de comprendre
 
 ### Logging
 
-EXSH intègre un système de logging permettant de savoir à quelle date a été exécutée une commande. Le Fichier de log est modifié dans `/var/log/exsh.log`.
+EXSH intègre un système de logging permettant de savoir à quelle date a été exécutée une commande. Le fichier de log est modifié dans `/var/log/exsh.log`.
 
 > **ATTENTION** Il est impératif de définir les droits du fichier logs pour qu'un tiers puisse le modifier sans quoi une erreur apparaîtra durant l'execution.
 
@@ -158,12 +158,12 @@ assistant.process
 
 L'exemple ci-dessus montre une catégorie ayant pour nom `assistant.process` et contenant 2 éléments `assistant.listProcess` et `assistant.killprocess`. Les noms des catégories ne sont pas écrits tels quels, mais ce sont des références au fichier de langue de l'utilisateur. On indente la ligne avec un **espace** pour organiser les données.
 
-Pour ajouter un élément à une catégorie, vous devez mettre le bon nombre d'espaces au début pour préciser l'indentation puis mettre la référence au fichier de langues. Si vous voulez exécuter une commande dès que l'utilisateur sélectionne l'élément vous pouvez ajouter à une ligne un symbole `|` suivi de la commande éxecuter.
+Pour ajouter un élément à une catégorie, vous devez mettre le bon nombre d'espaces au début pour préciser l'indentation puis mettre la référence au fichier de langues. Si vous voulez exécuter une commande dès que l'utilisateur sélectionne l'élément vous pouvez ajouter à une ligne un symbole `|` suivi de la commande exécuter.
 Si votre commande demande des paramètres vous pouvez mettre un signe `%s` ou un signe `%d`. Vous devez ensuite mettre les références aux fichiers de langue séparés par des symboles `|`.
 
 ### Etoffer le mode naturel
 
-Le mode naturel est par défaut assez sommaire mais il est possible de l'étoffer. Pour cela vous pouvez modifier les fichiers contenus dans le dossier `/etc/exsh/natural/`. Comme d'habitude, chaque fichier est propre à une langue. On écrit une ligne du mode naturel par commandes possible.
+Le mode naturel est par défaut assez sommaire mais il est possible de l'étoffer. Pour cela vous pouvez modifier les fichiers contenus dans le dossier `/etc/exsh/natural/`. Comme d'habitude, chaque fichier est propre à une langue. On écrit une ligne du mode naturel par commandes possibles.
 Une ligne se décompose en 2 ou 3 parties séparées par des symboles `|`. Dans la première partie, on énumère les mots clefs requis dans la phrase qui va exécuter la commande. Les mots clefs entrés devront être tapés dans l'ordre par l'utilisateur mais pourront être entrecoupés d'autres mots. La seconde partie est la commande à exécuter de manière précise. Si la commande demande des paramètres, on peut ajouter un `%` dans la commande puis écrire dans la troisième partie le type de données à entrer à la place de `%`. Les données possibles sont `directory` pour un chemin et `number` pour un nombre.
 
 Voici un exemple de ligne qui exécute la commande ls sur un chemin donné :

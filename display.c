@@ -11,12 +11,12 @@ void printPrompt(char *prompt){
 
 //Fonction récupèrant de manière sécurisée une entrée clavier
 //Paramètres :
-//  string : Chaine a remplire
+//  string : Chaîne a remplir
 //  max : Nombre maximum de caractères
 //Renvoie : 1 si tout c'est bien passé ou 0 si il y a une erreur
 int getKeyboard(char *string,int max){
   char *nPos = NULL;
-  //Recuperation de l'entrée de clavier
+  //Récuperation de l'entrée de clavier
   if(fgets(string,max,stdin) != NULL){
     //Recherche d'un \n
     nPos = strchr(string,'\n');
