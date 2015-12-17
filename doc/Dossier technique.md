@@ -40,7 +40,7 @@ Les taches du projet on été divisés en plusieurs groupes puis chacun des memb
 |Mode expert             |     |     |     |✗   |✗   |     |     |     |
 |Enregistrement logs     |     |     |     |     |✗   |✗   |     |     |
 |Easter Egg              |     |     |     |     |✗   |    |     |     |
-|Ajustements/Debug       |     |     |     |     |     |✗   |✗   |     |
+|Ajustements/Debug       |     |     |     |     |✗   |✗   |✗   |     |
 |Preparations            |     |     |     |     |     |     |    |✗   |
 
 ### Baptiste Saclier
@@ -54,7 +54,7 @@ Les taches du projet on été divisés en plusieurs groupes puis chacun des memb
 |Mode assistant          |     |     |✗   |✗   |✗   |     |     |     |
 |Mode naturel            |     |     |     |     |✗   |✗   |     |     |
 |Easter Egg              |     |     |     |✗   |✗   |     |     |     |
-|Ajustements/Debug       |     |     |     |     |     |✗   |✗   |     |
+|Ajustements/Debug       |     |     |     |     |✗   |✗   |✗   |     |
 |Preparations            |     |     |     |     |     |     |    |✗   |
 
 <div class="page-break"></div>
