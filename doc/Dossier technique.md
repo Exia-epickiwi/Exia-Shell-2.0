@@ -83,3 +83,27 @@ Après les prosits consacrés a la programmation en C le projet et l'aboutisseme
 Ce projet m'a apporté beaucoup de connaissances comme l'ouverture de fichier, création entière d'une console en mode expert. Ce projet aussi m'a permis d'apprendre à utiliser des logiciels de gestion de projet comme git pour la programmation en équipe et trello pour la gestion des tâches.
 Ensuite avant l'intégration dans l'école Exia.Cesi je n'ai jamais programmé en C (mais en d'autres langage oui). Cela m'a permis de créer de bonne connaissance en langage C.
 Le groupe a été modifié au dernier moment et malheuresement, nous avons fini les grosses fonctionnalités en 3-4 jours dû à notre niveau en langage C. Ce qui n'a pas été une vrai gestion de groupe (car on était au début seulement 2 membres).
+
+<u>Description de la réalisation effective du projet :</u>
+I] Main
+Chargement de la configuration et de la langue
+A) Mode expert
+1) Enregistrement des commandes (log)
+2) Exécution des commandes (exec)
+
+B) Mode assistant
+1) Enregistrement des commandes (log)
+2) Exécution des commandes (exec)
+
+C) Mode naturel
+1) Enregistrement des commandes (log)
+2) Exécution des commandes (exec)
+
+II] Exécution des commandes (exec)
+1) Commande de cd (recodé de cd)
+2) Exécution de jeu: easter-eggs
+3) Commande wls (recodé de ls)
+4) Commande wcat (recodé de cat)
+5) Commande wpwd (recodé de pwd)
+6) Commande wmount (recodé de mount)
+7) Commande listUser (nouvelle fonction pour Linux)
