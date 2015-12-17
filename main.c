@@ -37,6 +37,7 @@ int main(int argc, char *argv[]){
       return initNaturalMode(configuration);
     break;
     default:
+      //Erreur si le mode n'est pas reconnu
       printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(configuration->lang,"error.error"),toLocaleString(configuration->lang,"error.unknownMode"));
       return EXIT_FAILURE;
     break;

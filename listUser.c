@@ -8,19 +8,23 @@
 #include "config.h"
 #include "color.h"
 
+//Fonction affichant la liste des utilisateurs disponibles sur le système
+//Paramètres :
+//  config : structure de configuration
 void listUser(Config *config){
-  //ouvre le fichier
+  //Ouvre le fichier pssword
   FILE *fileUser = fopen("/etc/passwd", "r");
   if(fileUser == NULL){
     //Si le fichier n'existe pas alors aucun utilisateur
     printf("%s\n", toLocaleString(config->lang, "error.userNull"));
     return;
   }
+  //Affiche les entêtes du tableau
   char user[255];
   printf("\t"COLOR_GREEN"UID\t|  "COLOR_YELLOW" USER\n\t"COLOR_MAGENTA"-----------------\n"COLOR_RESET);
-  //affichage de chaque titre pour les colonnes
+  //Recupère lignes par ligne le contenu
   while(fgets(user, 255, fileUser)){
-    //sépare et récupére la valeur de name
+    //Recupèration du nom d'utilisateur
     char *name = strtok(user, ":");
     //La second valeur est x donc on la garde pas
     strtok(NULL, ":");

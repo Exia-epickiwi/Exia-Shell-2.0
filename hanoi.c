@@ -20,9 +20,14 @@ int moveHanoiDisc(HanoiTower *from, HanoiTower *to);
 void startGame(Config *config,int discNumber);
 void saveScore(char *name, int scoreTime, int level, int score);
 
+//Démarrage du jeu de hanoi
+//Paramètres :
+//  config : Structure de configuration pour la langue
 void initHanoiGame(Config *config){
+  //Affichage du nom et des regles
   printf("%s\n",toLocaleString(config->lang,"hanoi.name"));
   printf("%s\n",toLocaleString(config->lang,"hanoi.rules"));
+  //On demande le nombre de disques
   char enterDiff[5];
   int discNumber = 0;
   int maxDisc = 10;
@@ -31,6 +36,7 @@ void initHanoiGame(Config *config){
     getKeyboard(enterDiff,5);
     discNumber = atoi(enterDiff);
   }while(discNumber<3 || discNumber>maxDisc);
+  //On démarre le jeu
   startGame(config,discNumber);
 }
 
@@ -50,19 +56,26 @@ void startGame(Config *config, int discNumber){
   int score = 0;
   //Demarrage du chrono
   time_t start = time(NULL);
+  //Tant que la dernière tour n'est pas complète
   while(towers[TOWER_NUMBER-1]->height < discNumber){
     printf("\n\n");
     printf("%s : ",toLocaleString(config->lang,"hanoi.move"));
+    //Recupèration du mouvement a faire
     char move[5];
     getKeyboard(move,5);
-    score ++;
+    //Ajouter un coup au score
+    score++;
     printf("\n");
+    //On déduit le mouvement
     int moved = 0;
     int fromId = (move[0] - '0')-1;
     int toId = (move[1] - '0')-1;
+    //On verifie la validitée du mouvement
     if((fromId >= 0 && fromId < TOWER_NUMBER) && (toId >= 0 && toId < TOWER_NUMBER))
-      moved = moveHanoiDisc(towers[fromId],towers[toId]);
+      moved = moveHanoiDisc(towers[fromId],towers[toId]); // On bouge le disque
+    //On réecris les tours dans la console
     printHanoiTowers(towers,TOWER_NUMBER,discNumber);
+    //On ecris que le déplacement c'est bien éfféctué ou non
     printf("\n%s %d %s %d\n",toLocaleString(config->lang,"hanoi.moveFrom"),fromId+1,toLocaleString(config->lang,"hanoi.moveTo"),toId+1);
     if(moved == 0){
       printf(COLOR_RED "%s\n" COLOR_RESET,toLocaleString(config->lang,"hanoi.moveError"));
@@ -70,12 +83,17 @@ void startGame(Config *config, int discNumber){
       printf(COLOR_GREEN "%s\n" COLOR_RESET,toLocaleString(config->lang,"hanoi.moveSuccess"));
     }
   }
+  //Des que la derniere tour est complète
   printf("\n\n%s\n",toLocaleString(config->lang,"hanoi.gameFinished"));
+  //On fait la différence entre le temps de depart et le temps actuel
   int scoreTime = time(NULL)-start;
+  //On ecris le resultat dans la console puis on sauvegarde le tout dans la console
   printf("%s %ds, %s %d\n",toLocaleString(config->lang,"hanoi.gameDuration"),scoreTime, toLocaleString(config->lang, "hanoi.score"), score);
   saveScore(config->prompt, scoreTime, discNumber, score);
 }
 
+//Crée une pile appelée HanoiTower
+//Renvoie : un pointeur sur la structure
 HanoiTower* createHanoiTower(){
   HanoiTower *tower = malloc(sizeof(HanoiTower));
   tower->top = NULL;
@@ -83,6 +101,10 @@ HanoiTower* createHanoiTower(){
   return tower;
 }
 
+//Crée un élément de la pile HanoiTower appelé HanoiDisc
+//Paramètres :
+//  size : Taille du disque
+//Renvoie : un pointeur sur la structure de disque
 HanoiDisc* createHanoiDisc(int size){
   HanoiDisc *disc = malloc(sizeof(HanoiDisc));
   disc->tower = NULL;
@@ -99,6 +121,12 @@ HanoiTower* addHanoiDisc(HanoiTower* tower, HanoiDisc* disc){
   return tower;
 }
 
+//Remplis une tour avec des disques de tailles croissantes
+//Paramètres :
+//  tower : tour a remplire
+//  startSize : Taille du plus haut disque de la tour
+//  endSize : Taille du disque le plus bas de la tour
+//Renvoie : le pointeur de la tour donnée en paramètres
 HanoiTower* fillHanoiTower(HanoiTower* tower,int startSize,int endSize){
   int j;
   for(j=endSize;j>=startSize;j--){
@@ -107,6 +135,11 @@ HanoiTower* fillHanoiTower(HanoiTower* tower,int startSize,int endSize){
   return tower;
 }
 
+//Recupère le disque d'un certain ID
+//Paramètres :
+//  tower : tour a anlyser
+//  index : index en partant du plus haut disque de la tour
+//Renvoie : le disque correspondant a l'index ou NULL s'il n'existe pas
 HanoiDisc* getHanoiDisc(HanoiTower *tower,int index){
   HanoiDisc *next = tower->top;
   int i;
@@ -119,6 +152,10 @@ HanoiDisc* getHanoiDisc(HanoiTower *tower,int index){
   return NULL;
 }
 
+//Supprime un disque d'une tour
+//Paramètres :
+//  tower : tour dont on doit retirer le disque
+//Renvoie : un pointeur sur le disque retiré ou NULL s'il n'y a rien a retirer
 HanoiDisc* removeHanoiDisc(HanoiTower *tower){
   if(tower->top != NULL){
     HanoiDisc *disc = tower->top;
@@ -132,6 +169,11 @@ HanoiDisc* removeHanoiDisc(HanoiTower *tower){
   }
 }
 
+//Fonction déplaceant un disque d'une tour a l'autre
+//Paramètres :
+//  from : Tour de départie
+//  to : Tour d'arrivée
+//Renvoie : 1 si tout c'est bien passé ou 0 si non
 int moveHanoiDisc(HanoiTower *from, HanoiTower *to){
   if(from->top != NULL){
     if(to->top == NULL || (to->top->size > from->top->size)){
@@ -143,6 +185,11 @@ int moveHanoiDisc(HanoiTower *from, HanoiTower *to){
   return 0;
 }
 
+//Affiche le contenu des tours
+//Paramètres :
+//  towers : les tours a afficher
+//  towerNumber : Le nombre de tours a afficher
+//  maxHeight : Taille maximale d'une tour
 void printHanoiTowers(HanoiTower *towers[],int towerNumber, int maxHeight){
   //Pour chaque etage
   int i;
@@ -180,6 +227,10 @@ void printHanoiTowers(HanoiTower *towers[],int towerNumber, int maxHeight){
   printf("\n");
 }
 
+//Affiche un disuqe d'une tour
+//Paramètres :
+//  size : Taille du disque
+//  maxSize : Taille maximale d'un disque
 void printDisc(int size,int maxSize){
     switch(size%6){
       case 0:
@@ -220,6 +271,12 @@ void printDisc(int size,int maxSize){
     printf(COLOR_RESET);
 }
 
+//Sauvegarde le score du joueur
+//Paramètres :
+//  name : Nom du fichier ou sauvegarde
+//  scoreTime : temps en secondes qu'a duré le jeu
+//  level : Niveau de difficulté (nombre de disques) du jeu
+//  score : Nombre de coups a sauvegarder
 void saveScore(char *name, int scoreTime, int level, int score){
   FILE *file = fopen(PATH_SCORE, "r+");
   char scor[50];

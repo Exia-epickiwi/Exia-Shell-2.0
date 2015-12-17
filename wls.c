@@ -32,6 +32,10 @@ int isImg(struct dirent *element);
 char* getExtention(struct dirent *element);
 void reverseOrder(struct dirent **elements);
 
+//fonction listant le contenu d'un dossier
+//Paramètres :
+//  path : chemin du dossier a afficher (relatif/absolu)
+//Renvoie : 0 si le dossier n'a pas pu etre ouvert et 1 si tout c'est bien passé
 int wls(char *path,int parameter){
   //On ouvre le dossier demandé
   DIR *folder = NULL;
@@ -47,8 +51,13 @@ int wls(char *path,int parameter){
   reverseOrder(elements);
   //On affiche le resultat
   printDir(elements);
+  return 1;
 }
 
+//Fonction recupèrant le contenu du dossier donné sous forme d'un tableau de structure dirent
+//Paramètres :
+//  folder : structure DIR du dossier a ouvrir
+//Renvoie : un tableau de structure dirent
 struct dirent** getFolderContent(DIR *folder){
   //Variable de l'element actuel
   struct dirent *element;
@@ -69,6 +78,9 @@ struct dirent** getFolderContent(DIR *folder){
   return result;
 }
 
+//Afficher le dossier a l'ecran (avec couleurs)
+//Paramètres :
+//  elements : tableau de structures dirent
 void printDir(struct dirent **elements){
   struct dirent *next = elements[0];
   int i;
@@ -79,6 +91,10 @@ void printDir(struct dirent **elements){
   }
 }
 
+//Fonction permettant de recupèrer la couleur d'un fichier
+//Paramètres :
+//  element : structure dirent de l'élément
+//Renvoie : une chaine de caractères decrivant la couleur de forme AINSI
 char *getColor(struct dirent *element){
   switch(getType(element)){
     case WLS_F_REG :
@@ -117,6 +133,10 @@ char *getColor(struct dirent *element){
   }
 }
 
+//Recupère le type de fichier d'un élément dirent
+//Paramètres :
+//  element : l'element dirent
+//Renvoie : Le type de fichier
 int getType(struct dirent *element){
   switch(element->d_type){
     case DT_DIR:
@@ -153,6 +173,10 @@ int getType(struct dirent *element){
   }
 }
 
+//Verifie qau'un element dirent est un executable
+//Paramètres :
+//  element : l'element dirent
+//Renvoie : 1 si oui 0 si non
 int isExe(struct dirent *element){
   char *extention = getExtention(element);
   if(extention == NULL)
@@ -166,6 +190,10 @@ int isExe(struct dirent *element){
   }
 }
 
+//fonction permettant de verifier qu'un element dirent est un fichier source
+//Paramètres :
+//  element : element dirent
+//Renvoie : 1 si oui ou 0 si non
 int isSrc(struct dirent *element){
   char *extention = getExtention(element);
   if(extention == NULL)
@@ -179,6 +207,10 @@ int isSrc(struct dirent *element){
   }
 }
 
+//Fonction permettant de verifier qu'un fichier est un fichier musique
+//Paramètres :
+//  element : l'element a analyser
+//Renvoie : 1 si oui ou 0 si non
 int isMus(struct dirent *element){
   char *extention = getExtention(element);
   if(extention == NULL)
@@ -192,6 +224,10 @@ int isMus(struct dirent *element){
   }
 }
 
+//Fonction verifiant que la structure dirent est un fichier musique
+//Paramètres :
+//  element : l'element dirent
+//Renvoie : 1 si oui 0 si non
 int isImg(struct dirent *element){
   char *extention = getExtention(element);
   if(extention == NULL)
@@ -205,7 +241,12 @@ int isImg(struct dirent *element){
   }
 }
 
+//Fonction définissant l'extention d'un fichier
+//Paramètres :
+//  element : l'element dirent
+//Renvoie : une chaine de caractères définissant l'extention
 char* getExtention(struct dirent *element){
+  //Définis la position du dernier point sur le nom
   int pointPos = -1;
   int i;
   for(i = strlen(element->d_name)-1;i>=0;i--){
@@ -217,8 +258,8 @@ char* getExtention(struct dirent *element){
   if(pointPos == -1){
     return NULL;
   }
-
-char *extention = malloc(sizeof(char)*(strlen(element->d_name)-i));
+  //Creation d'un chaine contenant l'extention
+  char *extention = malloc(sizeof(char)*(strlen(element->d_name)-i));
   int j;
   for(i = pointPos+1, j = 0; i<strlen(element->d_name); i++){
     extention[j] = element->d_name[i];
@@ -228,6 +269,9 @@ char *extention = malloc(sizeof(char)*(strlen(element->d_name)-i));
   return extention;
 }
 
+//Inverse l'ordre original d'un tableau
+//Paramètres :
+// elements : tableau d'elements dirents a inverser
 void reverseOrder(struct dirent **elements){
   struct dirent **temp = NULL;
   struct dirent *next = elements[0];

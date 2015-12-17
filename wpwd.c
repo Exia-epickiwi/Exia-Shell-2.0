@@ -4,6 +4,7 @@
 #include "wpwd.h"
 #include "color.h"
 
+//Fonction affichant l'endroit ou se trouve l'utilisateur
 void getPwd() {
     char cwd[1025];
     getcwd(cwd, sizeof(cwd));

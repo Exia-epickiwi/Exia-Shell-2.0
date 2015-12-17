@@ -16,9 +16,12 @@ void printPrompt(char *prompt){
 //Renvoie : 1 si tout c'est bien passé ou 0 si il y a une erreur
 int getKeyboard(char *string,int max){
   char *nPos = NULL;
+  //Recuperation de l'entrée de clavier
   if(fgets(string,max,stdin) != NULL){
+    //Recherche d'un \n
     nPos = strchr(string,'\n');
     if(nPos != NULL){
+      //Remplacement par un \0
       *nPos = '\0';
     }
     return 1;

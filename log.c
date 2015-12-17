@@ -7,11 +7,14 @@
 //Nombre de caractère maximale
 #define LINE_CHARACTER_MAX 150
 
+void defile(HeadLog headLog);
+void emfile(HeadLog *headLog, ElementLog * elementLog);
+
 char *removeN(char *tableau);
 
 void toLog(char *string){
   //Ouvre le fichier
-  FILE *fileLog = fopen(PATH_LOG, "r+");
+  FILE *fileLog = fopen(PATH_LOG, "a");
 
   //Initialise la date de la machine
   time_t t;
@@ -29,8 +32,6 @@ void toLog(char *string){
     //Insère la première ligne dans le fichier
     fputs(logString, fileLog);
   } else {
-    //Situe le curseur en fin du fichier
-    fseek(fileLog, 0, SEEK_END);
     //Insère la ligne
     fputs(logString, fileLog);
   }
@@ -68,12 +69,32 @@ void loadHistory(Config *config){
       ElementLog *elementLog = malloc(sizeof(ElementLog));
       strtok(lineConfig, "-");
       strcpy(elementLog->command, strtok(NULL, "\0"));
-
-      elementLog->next = config->history->first;
-      config->history->first = elementLog;
+        emfile(headLog, elementLog);
       config->history->length++;
-      if(config->history->length > 25) break;
+      if(config->history->length > 5) {
+        defile(headLog);
+        emfile(headLog);
+      }
     }
+  }
+}
+void emfile(HeadLog *headLog, ElementLog * elementLog){
+  if(headLog->first != NULL){
+    ElementLog *actual = HeadLog->first;
+    while(actual != NULL){
+      actual = actual->next;
+    }
+    actual->next = elementLog;
+  } else {
+    headLog->first = elementLog;
+  }
+}
+
+void defile(HeadLog headLog){
+  if(headLog->first != NULL){
+    ElementLog *elementLog = headLog->first;
+    headLog->first = elementLog->next;
+    free(elementLog);
   }
 }
 

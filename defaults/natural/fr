@@ -33,4 +33,4 @@ executer,commande|/bin/%|directory
 executer|%|directory
 imhotep|echo Exyptien.exe
 modifier,mode|setConfig
-relancer,exsh|reboot
+relancer,exsh|reload

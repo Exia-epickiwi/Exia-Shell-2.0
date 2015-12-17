@@ -13,27 +13,43 @@ char* getCommandLine(char *locale,char *line);
 char* strReplace(char *str,char *insert,char replacement);
 int containNumber(char **words);
 
+//Démarre le mode naturel
+//Paramètres :
+//  configuration : Structure de configuration
+//Renvoie : le nomre renvoyé par le programme
 int initNaturalMode(Config *configuration){
+  //Boucle infinie seulement adrrêtée par un appel a exit()
   while(1){
+    //Affiche le prompt
     printPrompt(configuration->prompt);
     printf(COLOR_GREEN "%s\n" COLOR_RESET,toLocaleString(configuration->lang,"natural.prompt"));
+    //recuperation de l'entrée calvier
     char buffer[COMMAND_LENGTH] = {'\0'};
     char comd[COMMAND_LENGTH];
     getKeyboard(buffer,COMMAND_LENGTH);
+    //Recuperation de l'equivalent en comande de la ligne
     char *command = getCommandLine(configuration->locale,buffer);
     if(command == NULL){
+      //Si la commande n'est pas reconnue
       printf(COLOR_RED "%s\n" COLOR_RESET,toLocaleString(configuration->lang,"natural.notFound"));
     } else {
+      //Executer de manyère synchrone la commande
       int result = execCommandSync(command,configuration);
       if(result == 0){
         printf(COLOR_RED "%s" COLOR_RESET " %s\n",toLocaleString(configuration->lang,"error.error"),toLocaleString(configuration->lang,"error.programError"));
       }
     }
+    //Libèrer l'espace utilisé par le tableau
     free(command);
   }
   return EXIT_SUCCESS;
 }
 
+//Convertie une ligne en langage naturel en equivalent commande
+//Paramètres :
+//  locale : code a 2 lettres de la langue de l'utilisateur
+//  line : ligne en langage naturel
+//Renvoie : le pid du process executé ou -1 si il y a eu une erreur
 char* getCommandLine(char *locale,char *line){
   //Chargement du fichier de mot clefs
   char locPath[COMMAND_LENGTH] = {'\0'};
@@ -96,6 +112,11 @@ char* getCommandLine(char *locale,char *line){
   return NULL;
 }
 
+//Coupe une chaine de carractère en tableau de chaine en suivant un séparateur
+//Paramètres :
+//  str : Chaine a découper
+//  separator : Chaine de caractere definissant la suite de crractères séparateurs (ils n'apparaitra pas dans le resultat final)
+// Renvoie : Un pointeur vers un tableau de chaines de caractères
 char** strSlice(char *str,char *separator){
   int length = 0;
   char **result = NULL;
@@ -110,6 +131,10 @@ char** strSlice(char *str,char *separator){
   return result;
 }
 
+//Verifie qu'un tableau de chaines de caractères contiens un chemin
+//Paramètres :
+//  words : un tableau de chaines de caractères
+//Renvoie : l'index de la chaine désigant le mot ou -1 s'il n'y en a pas
 int containDirectory(char **words){
   int i;
   char *next = words[0];
@@ -122,6 +147,10 @@ int containDirectory(char **words){
   return -1;
 }
 
+//Fonction verifiant qu'il existe un nombre parmis les mots donnés
+//Paramètres :
+//  words : tableau de chaines de caractères
+//Renvoie : l'index du mot contant les nombres ou -1 s'il n'existe pas
 int containNumber(char **words){
   int i;
   char *next = words[0];
@@ -137,6 +166,12 @@ int containNumber(char **words){
   return -1;
 }
 
+//Rempalce un caractère d'une chaine par une autre chaine
+//Paramètres :
+//  str : Chaine de caractère a modifier
+//  insert : chaine de caractère a insèrer
+//  replacement : le caractère qui définis l'emplacement du remplacement
+//Renvoie : la chaine modifiée (directement modifiée dans str)
 char* strReplace(char *str,char *insert,char replacement){
   int i,j, captur = -1;
   char end[COMMAND_LENGTH] = {'\0'};
