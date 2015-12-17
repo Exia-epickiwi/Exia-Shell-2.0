@@ -90,32 +90,14 @@ Le groupe a été modifié au dernier moment et malheureusement, nous avons fini
 
 Au niveau du groupe le nombre était réduit et Franz n'était pas espéré pour ce projet Nicolas et Baptiste on donc géré le projet pour deux personnes. Ces deux personnes ont (malheureusement) terminé la majorité des fonctionnalités dès lundi 14 décembre et il ne restait seulement que quelques bugs à corriger et quelques commandes de haut niveau à développer. Malgré cela le groupe a permis la formation d'un logiciel abouti en très peu de temps et d'organiser le code pour une éventuelle évolution. Le groupe a utilisé GIT ainsi que TRELLO permettant d'organiser les opérations a effectuer et ainsi de permettre un gain de temps et de ressources intellectuelles.
 
+<div class="page-break"></div>
+
 ## Description de la réalisation effective du projet :
-I] Main
 
-Chargement de la configuration et de la langue
+### Schéma recapitulatif
 
-A) Mode expert
+![schema](img/Fonction.png)
 
-1) Enregistrement des commandes (log)
-2) Exécution des commandes (exec)
+### Description
 
-B) Mode assistant
-
-1) Enregistrement des commandes (log)
-2) Exécution des commandes (exec)
-
-C) Mode naturel
-
-1) Enregistrement des commandes (log)
-2) Exécution des commandes (exec)
-
-II] Exécution des commandes (exec)
-
-1) Commande de cd (recodé de cd)
-2) Exécution de jeu: easter-eggs
-3) Commande wls (recodé de ls)
-4) Commande wcat (recodé de cat)
-5) Commande wpwd (recodé de pwd)
-6) Commande wmount (recodé de mount)
-7) Commande listUser (nouvelle fonction pour Linux)
+Le programme démarre par la fonction main récupérant la configuration et la langue dans une structure unique. Cette fonction appelle ensuite la fonction d'initialisation du mode demandé. Le mode attend alors l'entrée de l'utilisateur puis convertit celle-ci en un équivalent exécutable (commande) qui est ensuite exécuté par le module exec. Les commandes de base sont exécutées depuis le dossier BIN sauf certaines commandes que nous avons ajoutées comme (wls,listUser,wcat,hanoi,etc.).
