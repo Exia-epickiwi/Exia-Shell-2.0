@@ -14,7 +14,7 @@
 #include "wls.h"
 #include "listUser.h"
 #include "wpwd.h"
-
+#include "wmount.h"
 //Fonction executant un programme suivant une commande
 //Paramètres :
 //  str : Tableau représentant la chaine de caractère de la commande
@@ -107,6 +107,16 @@ int execCommand(char *str, Config *config) {
     if(kill(atoi(args[1]), SIGQUIT) == -1){
       printf(COLOR_RED "%s" COLOR_RESET, toLocaleString(config->lang, "error.error"));
     }
+  } else if(strcmp(args[0], "wmount") == 0){
+    //fonction qui permet de monter une périphérique
+    monte();
+  } else if(strcmp(args[0], "wcat") == 0){
+    //fonction qui permet de monter une périphérique
+    int sizeArgs = 0;
+    while(args[sizeArgs] != NULL){
+      sizeArgs++;
+    }
+    cat(size, args);
   } else if(strcmp(args[0], "wpwd") == 0){
     //fonction qui permet de montrer où l'utilisateur se trouve
     getPwd();
