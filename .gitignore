@@ -33,5 +33,9 @@ exsh
 *.dSYM/
 *.log
 
+#clion
+.idea
+.idea/*
+
 #PDF
 *.pdf
